@@ -1,0 +1,129 @@
+﻿<Window x:Class="JiraReleaseNoteCreator.Ui.MainView.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:jiraReleaseNoteCreator="clr-namespace:JiraReleaseNoteCreator"
+        xmlns:loginView="clr-namespace:JiraReleaseNoteCreator.Ui.LoginView"
+        xmlns:timeTracking="clr-namespace:JiraReleaseNoteCreator.Ui.TimeTracking"
+        xmlns:templateSelector="clr-namespace:JiraReleaseNoteCreator.Ui.TabItem.TemplateSelector"
+        xmlns:issueTabItem="clr-namespace:JiraReleaseNoteCreator.Ui.IssueTabItem"
+        xmlns:changelogTabItem="clr-namespace:JiraReleaseNoteCreator.Ui.ChangelogTabItem"
+        xmlns:designViewModels="clr-namespace:JiraReleaseNoteCreator.Ui.MainView.DesignViewModels"
+        Title="MainWindow"
+        Height="450"
+        Width="600"
+        mc:Ignorable="d"
+        Background="#6E6E6E">
+    <d:DesignProperties.DataContext>
+        <designViewModels:MainDesignViewModel />
+    </d:DesignProperties.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Expander Header="Login"
+                  IsExpanded="True"
+                  Background="#A4A4A4">
+            <loginView:LoginView Margin="0"
+                                 Padding="5,4,5,6" />
+        </Expander>
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <HeaderedContentControl 
+                                    Margin="3"
+                                    Template="{StaticResource HeaderedControlWithGridHorizontal}"
+                                    Foreground="LightGreen">
+                <HeaderedContentControl.Header>
+                    
+                        <TextBlock HorizontalAlignment="Center"
+                                   Text="&#xf03a;"
+                                   FontSize="16"
+                                   FontFamily="{StaticResource FontAwesome}" />
+                    
+                </HeaderedContentControl.Header>
+                <ComboBox ItemsSource="{Binding Path=Projects}"
+                          SelectedItem="{Binding Path=SelectedProject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          Margin="3" />
+            </HeaderedContentControl>
+
+            <HeaderedContentControl Header=""
+                                    Margin="3"
+                                    Grid.Column="1"
+                                    Template="{StaticResource HeaderedControlWithGridHorizontal}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Text="{Binding Path=SearchIssueKey, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="3,3,2,3" KeyUp="UIElement_OnKeyUp"/>
+                    <Button Grid.Column="1"
+                            Command="{Binding Path=SearchIssueByKeyCommand}"
+                            Margin="1,3,3,3"
+                            Name="_searchButton" Style="{StaticResource CommonTransparentButtonStyle}">
+                        <Button.Content>
+                            <TextBlock HorizontalAlignment="Center"
+                                       Text="&#xf002;"
+                                       FontSize="16"
+                                       FontFamily="{StaticResource FontAwesome}" />
+                        </Button.Content>
+                    </Button>
+                </Grid>
+            </HeaderedContentControl>
+        </Grid>
+
+        <TabControl Grid.Row="2"
+                    ItemsSource="{Binding Path=TabItems}"
+                    Style="{DynamicResource TabControlStyle1}"
+                    BorderBrush="LightGreen"
+                    BorderThickness="0,3,0,0"
+                    SelectedItem="{Binding Path=SelectedTabItemViewModel}">
+            <TabControl.Resources>
+                <templateSelector:TabItemTemplateSelector x:Key="ItemTemplateSelector">
+                    <templateSelector:TabItemTemplateSelector.IssueTabItemDataTemplate>
+                        <DataTemplate>
+                            <issueTabItem:IssueTabItemView DataContext="{Binding}" />
+                        </DataTemplate>
+                    </templateSelector:TabItemTemplateSelector.IssueTabItemDataTemplate>
+                    <templateSelector:TabItemTemplateSelector.ChangelogTabItemDataTemplate>
+                        <DataTemplate>
+                            <changelogTabItem:ChangelogView DataContext="{Binding}" />
+                        </DataTemplate>
+                    </templateSelector:TabItemTemplateSelector.ChangelogTabItemDataTemplate>
+                </templateSelector:TabItemTemplateSelector>
+            </TabControl.Resources>
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=HeaderText}" VerticalAlignment="Center"/>
+                        <Button Command="{Binding Path=CloseTabCommand}" Margin="5,0,5,0" Style="{StaticResource CommonTransparentButtonStyle}">
+                            <Button.Content>
+                                <TextBlock HorizontalAlignment="Center"
+                                           Text="&#xf00d;"
+                                           FontSize="16"
+                                           FontFamily="{StaticResource FontAwesome}" VerticalAlignment="Center"/>
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ContentPresenter ContentTemplateSelector="{StaticResource ItemTemplateSelector}"
+                                      Content="{Binding Path=Content}" />
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </TabControl>
+
+    </Grid>
+</Window>

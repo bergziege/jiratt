@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2CE964CF-3DB1-4ADE-A9B2-240228846627}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JiraReleaseNoteCreator</RootNamespace>
+    <AssemblyName>JiraReleaseNoteCreator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Atlassian.Jira">
+      <HintPath>..\packages\Atlassian.SDK.4.4.0\lib\Atlassian.Jira.dll</HintPath>
+    </Reference>
+    <Reference Include="DryIoc">
+      <HintPath>..\packages\DryIoc.dll.2.0.0.266\lib\net45\DryIoc.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="Queo.Commons">
+      <HintPath>..\packages\Queo.Commons.1.5.0.0\lib\net40\Queo.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="Queo.Commons.MVVM">
+      <HintPath>..\packages\Queo.Commons.MVVM.1.2.3.0\lib\net40\Queo.Commons.MVVM.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.1.0\lib\net45\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AppContext.cs" />
+    <Compile Include="ChangelogModel\ChangelogModel.cs" />
+    <Compile Include="ChangelogModel\IssueModel.cs" />
+    <Compile Include="ChangelogModel\IssueTypeModel.cs" />
+    <Compile Include="ChangelogModel\SubIssueModel.cs" />
+    <Compile Include="ChangelogModel\VersionModel.cs" />
+    <Compile Include="Controls\CircularTimeProgress.cs" />
+    <Compile Include="Properties\InternalsVisibleToDryIocFactoryCompilerDynamicAssembly.cs" />
+    <Compile Include="Ui\ChangelogTabItem\ChangelogView.xaml.cs">
+      <DependentUpon>ChangelogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\ChangelogTabItem\DesignViewModels\ChangelogTabItemDesignViewModel.cs" />
+    <Compile Include="Ui\ChangelogTabItem\IChangelogTabItemViewModel.cs" />
+    <Compile Include="Ui\ChangelogTabItem\ViewModels\ChangelogTabItemViewModel.cs" />
+    <Compile Include="Ui\CommitComment\CommitCommentView.xaml.cs">
+      <DependentUpon>CommitCommentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\CommitComment\ICommitCommentViewModel.cs" />
+    <Compile Include="Ui\CommitComment\ViewModels\CommitCommentViewModel.cs" />
+    <Compile Include="Ui\IssueTabItem\DesignViewModels\IssueTabItemDesignViewModel.cs" />
+    <Compile Include="Ui\IssueTabItem\IIssueTabItemViewModel.cs" />
+    <Compile Include="Ui\IssueTabItem\IssueTabItemView.xaml.cs">
+      <DependentUpon>IssueTabItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\IssueTabItem\ViewModels\IssueTabItemViewModel.cs" />
+    <Compile Include="Ui\LoginView\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\MainView\DesignViewModels\MainDesignViewModel.cs" />
+    <Compile Include="Ui\MainView\IMainViewModel.cs" />
+    <Compile Include="Ui\MainView\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\MainView\ViewModels\MainViewModel.cs" />
+    <Compile Include="Ui\TabItem\DesignViewModels\TabItemDesignViewModel.cs" />
+    <Compile Include="Ui\TabItem\ITabItemViewModel.cs" />
+    <Compile Include="Ui\TabItem\TemplateSelector\TabItemTemplateSelector.cs" />
+    <Compile Include="Ui\TabItem\ViewModels\TabItemViewModel.cs" />
+    <Compile Include="Ui\TimeTracking\DesignViewModels\TimeTrackingDesignViewModel.cs" />
+    <Compile Include="Ui\TimeTracking\ITimeTrackingViewModel.cs" />
+    <Compile Include="Ui\TimeTracking\TimeTrackingView.xaml.cs">
+      <DependentUpon>TimeTrackingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ui\TimeTracking\ViewModels\TimeTrackingViewModel.cs" />
+    <Compile Include="UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\CircularTimeProgressStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ui\ChangelogTabItem\ChangelogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\CommitComment\CommitCommentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\IssueTabItem\IssueTabItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\LoginView\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ui\MainView\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ui\TimeTracking\TimeTrackingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="Fonts\fontawesome-webfont.eot" />
+    <Resource Include="Fonts\fontawesome-webfont.ttf" />
+    <Resource Include="Fonts\fontawesome-webfont.woff" />
+    <Resource Include="Fonts\fontawesome-webfont.woff2" />
+    <Resource Include="Fonts\FontAwesome.otf" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="Ui\ChangelogTabItem\Doc\changelog.rst" />
+    <None Include="Ui\LoginView\Doc\login.rst" />
+    <None Include="Ui\MainView\Doc\index.rst" />
+    <None Include="Ui\ProjectsView\Doc\projects.rst" />
+    <None Include="Ui\TimeTracking\Docs\TimeTrackingView.rst" />
+    <None Include="Ui\VersionsView\Doc\versions.rst" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+    <Folder Include="Ui\CommitComment\DesignViewModels\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\fontawesome-webfont.svg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
