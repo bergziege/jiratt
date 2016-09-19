@@ -97,7 +97,7 @@ namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
         }
 
         private Issue SearchIssueByKey(int issueKey) {
-            IOrderedQueryable<Issue> issues = from i in _jira.Issues
+            IOrderedQueryable<Issue> issues = from i in _jira.Issues.Queryable
                 where i.Key == _project.Key + "-" + issueKey
                 orderby i.Created
                 select i;

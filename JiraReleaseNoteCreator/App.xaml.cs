@@ -8,6 +8,7 @@ using JiraReleaseNoteCreator.Ui.CommitComment;
 using JiraReleaseNoteCreator.Ui.CommitComment.ViewModels;
 using JiraReleaseNoteCreator.Ui.IssueTabItem;
 using JiraReleaseNoteCreator.Ui.IssueTabItem.ViewModels;
+using JiraReleaseNoteCreator.Ui.MainView;
 using JiraReleaseNoteCreator.Ui.MainView.ViewModels;
 using JiraReleaseNoteCreator.Ui.TabItem;
 using JiraReleaseNoteCreator.Ui.TabItem.ViewModels;
@@ -31,7 +32,7 @@ namespace JiraReleaseNoteCreator {
             RegisterViews();
 
             Ui.MainView.MainWindow window = AppContext.Instance.Container.Resolve<Ui.MainView.MainWindow>();
-            MainViewModel vm = AppContext.Instance.Container.Resolve<MainViewModel>();
+            IMainViewModel vm = AppContext.Instance.Container.Resolve<IMainViewModel>();
             window.DataContext = vm;
             MainWindow = window;
             MainWindow.Show();
@@ -42,12 +43,12 @@ namespace JiraReleaseNoteCreator {
         }
 
         private void RegisterViewModels() {
-            AppContext.Instance.Container.Register<MainViewModel>();
-            AppContext.Instance.Container.Register<ITimeTrackingViewModel, TimeTrackingViewModel>();
-            AppContext.Instance.Container.Register<ITabItemViewModel, TabItemViewModel>();
-            AppContext.Instance.Container.Register<IChangelogTabItemViewModel, ChangelogTabItemViewModel>();
-            AppContext.Instance.Container.Register<IIssueTabItemViewModel, IssueTabItemViewModel>();
-            AppContext.Instance.Container.Register<ICommitCommentViewModel, CommitCommentViewModel>();
+            AppContext.Instance.Container.Register<IMainViewModel,MainViewModel>(setup: Setup.With(allowDisposableTransient: true));
+            AppContext.Instance.Container.Register<ITimeTrackingViewModel, TimeTrackingViewModel>(setup: Setup.With(allowDisposableTransient: true));
+            AppContext.Instance.Container.Register<ITabItemViewModel, TabItemViewModel>(setup: Setup.With(allowDisposableTransient: true));
+            AppContext.Instance.Container.Register<IChangelogTabItemViewModel, ChangelogTabItemViewModel>(setup: Setup.With(allowDisposableTransient: true));
+            AppContext.Instance.Container.Register<IIssueTabItemViewModel, IssueTabItemViewModel>(setup: Setup.With(allowDisposableTransient: true));
+            AppContext.Instance.Container.Register<ICommitCommentViewModel, CommitCommentViewModel>(setup: Setup.With(allowDisposableTransient: true));
 
         }
 

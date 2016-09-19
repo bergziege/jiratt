@@ -85,9 +85,9 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
             SelectedTabItemViewModel = tabItemViewModel;
         }
 
-        private void FillProjects() {
+        private async void FillProjects() {
             Projects.Clear();
-            foreach (Project project in _jira.GetProjects()) {
+            foreach (Project project in (await _jira.Projects.GetProjectsAsync()).OrderBy(x=>x.Name)) {
                 _projects.Add(project);
             }
         }
