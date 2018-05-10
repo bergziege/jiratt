@@ -158,3 +158,5 @@ $RECYCLE.BIN/
 packages/
 db_test/
 db_live/
+
+.vs/
