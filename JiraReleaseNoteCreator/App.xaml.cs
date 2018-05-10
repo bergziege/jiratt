@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 
-using DryIoc;
-
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem;
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem.ViewModels;
 using JiraReleaseNoteCreator.Ui.CommitComment;
@@ -15,6 +13,7 @@ using JiraReleaseNoteCreator.Ui.TabItem.ViewModels;
 using JiraReleaseNoteCreator.Ui.TimeTracking;
 using JiraReleaseNoteCreator.Ui.TimeTracking.DesignViewModels;
 using JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels;
+using Microsoft.Practices.Unity;
 
 namespace JiraReleaseNoteCreator {
     /// <summary>
@@ -39,21 +38,21 @@ namespace JiraReleaseNoteCreator {
         }
 
         private void RegisterViews() {
-            AppContext.Instance.Container.Register<Ui.MainView.MainWindow>();
+            AppContext.Instance.Container.RegisterType<MainWindow>();
         }
 
         private void RegisterViewModels() {
-            AppContext.Instance.Container.Register<IMainViewModel,MainViewModel>(setup: Setup.With(allowDisposableTransient: true));
-            AppContext.Instance.Container.Register<ITimeTrackingViewModel, TimeTrackingViewModel>(setup: Setup.With(allowDisposableTransient: true));
-            AppContext.Instance.Container.Register<ITabItemViewModel, TabItemViewModel>(setup: Setup.With(allowDisposableTransient: true));
-            AppContext.Instance.Container.Register<IChangelogTabItemViewModel, ChangelogTabItemViewModel>(setup: Setup.With(allowDisposableTransient: true));
-            AppContext.Instance.Container.Register<IIssueTabItemViewModel, IssueTabItemViewModel>(setup: Setup.With(allowDisposableTransient: true));
-            AppContext.Instance.Container.Register<ICommitCommentViewModel, CommitCommentViewModel>(setup: Setup.With(allowDisposableTransient: true));
+            AppContext.Instance.Container.RegisterType<IMainViewModel,MainViewModel>();
+            AppContext.Instance.Container.RegisterType<ITimeTrackingViewModel, TimeTrackingViewModel>();
+            AppContext.Instance.Container.RegisterType<ITabItemViewModel, TabItemViewModel>();
+            AppContext.Instance.Container.RegisterType<IChangelogTabItemViewModel, ChangelogTabItemViewModel>();
+            AppContext.Instance.Container.RegisterType<IIssueTabItemViewModel, IssueTabItemViewModel>();
+            AppContext.Instance.Container.RegisterType<ICommitCommentViewModel, CommitCommentViewModel>();
 
         }
 
         private static void InitContainerAndAppContext() {
-            IContainer container = new Container();
+            IUnityContainer container = new UnityContainer();
             AppContext.Instance.Container = container;
         }
     }

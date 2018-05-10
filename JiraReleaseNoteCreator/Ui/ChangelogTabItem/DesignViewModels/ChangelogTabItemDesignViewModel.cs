@@ -2,11 +2,10 @@
 using System.Collections.ObjectModel;
 
 using Atlassian.Jira;
-
-using Com.QueoFlow.Commons.MVVM.ViewModels;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.ChangelogTabItem.DesignViewModels {
-    public class ChangelogTabItemDesignViewModel : ViewModelBase, IChangelogTabItemViewModel {
+    public class ChangelogTabItemDesignViewModel : BindableBase, IChangelogTabItemViewModel {
         public ChangelogTabItemDesignViewModel() {
             Changelog = "changed ...";
             ProjectVersions = new ObservableCollection<ProjectVersion>();

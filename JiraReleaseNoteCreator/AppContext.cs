@@ -1,4 +1,4 @@
-﻿using DryIoc;
+﻿using Microsoft.Practices.Unity;
 
 namespace JiraReleaseNoteCreator {
     public class AppContext {
@@ -15,6 +15,6 @@ namespace JiraReleaseNoteCreator {
 
         }
 
-        public IContainer Container { get; set; }
+        public IUnityContainer Container { get; set; }
     }
 }

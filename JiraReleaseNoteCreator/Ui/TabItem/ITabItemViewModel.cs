@@ -1,19 +1,18 @@
 ﻿using Atlassian.Jira;
 
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
 using JiraReleaseNoteCreator.Ui.MainView;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.TabItem {
-    public interface ITabItemViewModel : IViewModelBase {
-        IViewModelBase Content { get; }
+    public interface ITabItemViewModel {
+        BindableBase Content { get; }
 
         string HeaderText { get; }
 
         void LoadData(Project project, string contentKey, IMainViewModel mainViewModel);
 
-        RelayCommand CloseTabCommand { get; }
+        DelegateCommand CloseTabCommand { get; }
 
         string SearchKey { get; }
 

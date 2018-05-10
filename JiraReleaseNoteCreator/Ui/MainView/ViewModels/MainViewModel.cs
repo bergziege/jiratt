@@ -3,21 +3,18 @@ using System.Linq;
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons;
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
-using DryIoc;
-
 using JiraReleaseNoteCreator.Ui.TabItem;
 using JiraReleaseNoteCreator.Ui.TabItem.ViewModels;
+using Microsoft.Practices.Unity;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
-    public class MainViewModel : ViewModelBase, IMainViewModel {
+    public class MainViewModel : BindableBase, IMainViewModel {
         private readonly ObservableCollection<ITabItemViewModel> _tabItems = new ObservableCollection<ITabItemViewModel>();
         private Jira _jira;
         private ObservableCollection<Project> _projects = new ObservableCollection<Project>();
-        private RelayCommand _searchIssueByKeyCommand;
+        private DelegateCommand _searchIssueByKeyCommand;
         private string _searchIssueKey;
         private Project _selectedProject;
         private ITabItemViewModel _selectedTabItemViewModel;
@@ -29,10 +26,10 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
 
         /// <summary>
         /// </summary>
-        public RelayCommand SearchIssueByKeyCommand {
+        public DelegateCommand SearchIssueByKeyCommand {
             get {
                 if (_searchIssueByKeyCommand == null) {
-                    _searchIssueByKeyCommand = new RelayCommand("", CreateTab);
+                    _searchIssueByKeyCommand = new DelegateCommand(CreateTab);
                 }
 
                 return _searchIssueByKeyCommand;
@@ -43,7 +40,7 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
             get { return _searchIssueKey; }
             set {
                 _searchIssueKey = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.SearchIssueKey));
+                RaisePropertyChanged(nameof(SearchIssueKey));
             }
         }
 
@@ -51,13 +48,15 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
             get { return _selectedProject; }
             set {
                 _selectedProject = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.SelectedProject));
+                RaisePropertyChanged(nameof(SelectedProject));
             }
         }
 
         public ITabItemViewModel SelectedTabItemViewModel {
             get { return _selectedTabItemViewModel; }
-            set { _selectedTabItemViewModel = value; OnPropertyChanged(this.GetPropertyName(x => x.SelectedTabItemViewModel)); }
+            set { _selectedTabItemViewModel = value;
+                RaisePropertyChanged(nameof(SelectedTabItemViewModel));
+            }
         }
 
         public ObservableCollection<ITabItemViewModel> TabItems {
@@ -65,7 +64,7 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
         }
 
         public void Init() {
-            _jira = AppContext.Instance.Container.Resolve<Jira>();
+            _jira = (Jira) AppContext.Instance.Container.Resolve(typeof(Jira));
             FillProjects();
         }
 

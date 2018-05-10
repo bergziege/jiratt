@@ -1,10 +1,9 @@
 ﻿using Atlassian.Jira;
 
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
+using Prism.Commands;
 
 namespace JiraReleaseNoteCreator.Ui.TimeTracking {
-    public interface ITimeTrackingViewModel : IViewModelBase {
+    public interface ITimeTrackingViewModel {
         string Estimated { get; }
 
         string Logged { get; }
@@ -17,14 +16,14 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking {
 
         void LoadData(Issue issue);
 
-        RelayCommand StartStopCommand { get; }
+        DelegateCommand StartStopCommand { get; }
 
         string NotLoggedTime { get; }
 
         string LoggedIncludeNotLogged { get; }
 
-        RelayCommand LogTimeCommand { get; }
+        DelegateCommand LogTimeCommand { get; }
 
-        RelayCommand ResetCommand { get; }
+        DelegateCommand ResetCommand { get; }
     }
 }

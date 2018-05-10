@@ -3,21 +3,18 @@ using System.Linq;
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons;
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
-using DryIoc;
-
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem;
 using JiraReleaseNoteCreator.Ui.IssueTabItem;
 using JiraReleaseNoteCreator.Ui.MainView;
+using Microsoft.Practices.Unity;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
-    public class TabItemViewModel : ViewModelBase, ITabItemViewModel {
+    public class TabItemViewModel : BindableBase, ITabItemViewModel {
         private readonly Jira _jira;
-        private RelayCommand _closeTabCommand;
-        private IViewModelBase _content;
+        private DelegateCommand _closeTabCommand;
+        private BindableBase _content;
         private string _contentKey;
         private string _headerText;
         private IMainViewModel _mainViewModel;
@@ -27,21 +24,21 @@ namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
             _jira = jira;
         }
 
-        public RelayCommand CloseTabCommand {
+        public DelegateCommand CloseTabCommand {
             get {
                 if (_closeTabCommand == null) {
-                    _closeTabCommand = new RelayCommand("", CloseTab, CanCloseTab);
+                    _closeTabCommand = new DelegateCommand(CloseTab, CanCloseTab);
                 }
 
                 return _closeTabCommand;
             }
         }
 
-        public IViewModelBase Content {
+        public BindableBase Content {
             get { return _content; }
             private set {
                 _content = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.Content));
+                RaisePropertyChanged(nameof(Content));
             }
         }
 
@@ -49,7 +46,7 @@ namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
             get { return _headerText; }
             private set {
                 _headerText = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.HeaderText));
+                RaisePropertyChanged(nameof(HeaderText));
             }
         }
 
@@ -110,16 +107,16 @@ namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
 
         private void SetChangelogContent() {
             HeaderText = "Changelog " + _project.Key;
-            IChangelogTabItemViewModel changelogTabItemViewModel = AppContext.Instance.Container.Resolve<IChangelogTabItemViewModel>();
+            IChangelogTabItemViewModel changelogTabItemViewModel = (IChangelogTabItemViewModel) AppContext.Instance.Container.Resolve(typeof(IChangelogTabItemViewModel));
             changelogTabItemViewModel.LoadData(_project);
-            Content = changelogTabItemViewModel;
+            Content = (BindableBase) changelogTabItemViewModel;
         }
 
         private void SetIssueDetailContent(Issue issue) {
             HeaderText = issue.Key.ToString();
             IIssueTabItemViewModel issueTabItemViewModel = AppContext.Instance.Container.Resolve<IIssueTabItemViewModel>();
             issueTabItemViewModel.LoadData(_project, issue);
-            Content = issueTabItemViewModel;
+            Content = (BindableBase) issueTabItemViewModel;
         }
     }
 }

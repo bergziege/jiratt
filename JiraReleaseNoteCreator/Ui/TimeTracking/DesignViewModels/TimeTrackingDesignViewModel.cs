@@ -1,10 +1,9 @@
 ﻿using Atlassian.Jira;
-
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.TimeTracking.DesignViewModels {
-    public class TimeTrackingDesignViewModel : ViewModelBase, ITimeTrackingViewModel {
+    public class TimeTrackingDesignViewModel : BindableBase, ITimeTrackingViewModel {
         public TimeTrackingDesignViewModel() {
             PercentEstimated = 75;
             PercentLogged = 33;
@@ -28,14 +27,14 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.DesignViewModels {
         public void LoadData(Issue issue) {
         }
 
-        public RelayCommand StartStopCommand { get; private set; }
+        public DelegateCommand StartStopCommand { get; private set; }
 
         public string NotLoggedTime { get; private set; }
 
         public string LoggedIncludeNotLogged { get; private set; }
 
-        public RelayCommand LogTimeCommand { get; private set; }
+        public DelegateCommand LogTimeCommand { get; private set; }
 
-        public RelayCommand ResetCommand { get; private set; }
+        public DelegateCommand ResetCommand { get; private set; }
     }
 }

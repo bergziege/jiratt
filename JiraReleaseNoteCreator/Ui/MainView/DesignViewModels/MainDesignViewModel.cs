@@ -2,17 +2,16 @@
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem.DesignViewModels;
 using JiraReleaseNoteCreator.Ui.IssueTabItem.DesignViewModels;
 using JiraReleaseNoteCreator.Ui.TabItem;
 using JiraReleaseNoteCreator.Ui.TabItem.DesignViewModels;
 using JiraReleaseNoteCreator.Ui.TabItem.ViewModels;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.MainView.DesignViewModels {
-    public class MainDesignViewModel : ViewModelBase, IMainViewModel{
+    public class MainDesignViewModel : BindableBase, IMainViewModel{
         public MainDesignViewModel() {
             
             TabItems = new ObservableCollection<ITabItemViewModel>();
@@ -23,7 +22,7 @@ namespace JiraReleaseNoteCreator.Ui.MainView.DesignViewModels {
 
         public ObservableCollection<Project> Projects { get; set; }
 
-        public RelayCommand SearchIssueByKeyCommand { get; private set; }
+        public DelegateCommand SearchIssueByKeyCommand { get; private set; }
 
         public string SearchIssueKey { get; set; }
 

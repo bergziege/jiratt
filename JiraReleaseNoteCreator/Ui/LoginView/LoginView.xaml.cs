@@ -4,9 +4,8 @@ using System.Windows.Input;
 
 using Atlassian.Jira;
 
-using DryIoc;
-
 using JiraReleaseNoteCreator.Ui.MainView.ViewModels;
+using Microsoft.Practices.Unity;
 
 namespace JiraReleaseNoteCreator.Ui.LoginView {
     /// <summary>
@@ -23,7 +22,7 @@ namespace JiraReleaseNoteCreator.Ui.LoginView {
 
         private void DoLogin() {
             if (DataContext is MainViewModel) {
-                AppContext.Instance.Container.RegisterInstance(Jira.CreateRestClient(_serverUrl.Text, username.Text, pwd.Password));
+                AppContext.Instance.Container.RegisterInstance(typeof(Jira),Jira.CreateRestClient(_serverUrl.Text, username.Text, pwd.Password),new ContainerControlledLifetimeManager());
                 ((MainViewModel)DataContext).Init();
             }
         }

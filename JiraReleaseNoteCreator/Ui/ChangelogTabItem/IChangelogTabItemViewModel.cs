@@ -3,10 +3,8 @@ using System.Collections.ObjectModel;
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
 namespace JiraReleaseNoteCreator.Ui.ChangelogTabItem {
-    public interface IChangelogTabItemViewModel: IViewModelBase {
+    public interface IChangelogTabItemViewModel {
          string Changelog { get; }
 
         ObservableCollection<ProjectVersion> ProjectVersions { get; set; }

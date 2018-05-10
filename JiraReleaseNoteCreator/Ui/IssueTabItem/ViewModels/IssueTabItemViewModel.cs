@@ -2,14 +2,12 @@
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
 using JiraReleaseNoteCreator.Ui.CommitComment;
 using JiraReleaseNoteCreator.Ui.TimeTracking;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.IssueTabItem.ViewModels {
-    public class IssueTabItemViewModel: ViewModelBase, IIssueTabItemViewModel {
+    public class IssueTabItemViewModel: BindableBase, IIssueTabItemViewModel {
         private Jira _jira;
         private Issue _selectedIssue;
         private IssueTimeTrackingData _selectedIssueTimeTrackingData;
@@ -30,7 +28,7 @@ namespace JiraReleaseNoteCreator.Ui.IssueTabItem.ViewModels {
             get { return _selectedIssue; }
             set {
                 _selectedIssue = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.SelectedIssue));
+                RaisePropertyChanged(nameof(SelectedIssue));
                 if (_selectedIssue != null) {
                     SelectedIssueTimeTrackingData = _selectedIssue.GetTimeTrackingData();
                     TimeTrackingViewModel.LoadData(_selectedIssue);
@@ -44,7 +42,7 @@ namespace JiraReleaseNoteCreator.Ui.IssueTabItem.ViewModels {
             get { return _selectedIssueTimeTrackingData; }
             set {
                 _selectedIssueTimeTrackingData = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.SelectedIssueTimeTrackingData));
+                RaisePropertyChanged(nameof(SelectedIssueTimeTrackingData));
             }
         }
 
@@ -56,14 +54,16 @@ namespace JiraReleaseNoteCreator.Ui.IssueTabItem.ViewModels {
             set {
                 if (_timeTrackingViewModel != value) {
                     _timeTrackingViewModel = value;
-                    OnPropertyChanged(this.GetPropertyName(m => m.TimeTrackingViewModel));
+                    RaisePropertyChanged(nameof(TimeTrackingViewModel));
                 }
             }
         }
 
         public ICommitCommentViewModel CommitCommentViewModel {
             get { return _commitCommentViewModel; }
-            set { _commitCommentViewModel = value; OnPropertyChanged(this.GetPropertyName(x=>x.CommitCommentViewModel));}
+            set { _commitCommentViewModel = value;
+                RaisePropertyChanged(nameof(CommitCommentViewModel));
+            }
         }
 
         public void LoadData(Project project, Issue issue) {
