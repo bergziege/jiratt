@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using System.Windows;
 
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem;
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem.ViewModels;
@@ -14,6 +17,7 @@ using JiraReleaseNoteCreator.Ui.TimeTracking;
 using JiraReleaseNoteCreator.Ui.TimeTracking.DesignViewModels;
 using JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels;
 using Microsoft.Practices.Unity;
+using Squirrel;
 
 namespace JiraReleaseNoteCreator {
     /// <summary>
@@ -35,6 +39,23 @@ namespace JiraReleaseNoteCreator {
             window.DataContext = vm;
             MainWindow = window;
             MainWindow.Show();
+
+            Task.Run(
+                () => { Update(); });
+        }
+
+        private async void Update() {
+            using (var mgr = new UpdateManager("http://www.berndnet-2000.de/Releases/jiratt"))
+            {
+                try
+                {
+                    await mgr.UpdateApp();
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.WriteLine(ex.Message);
+                }
+            }
         }
 
         private void RegisterViews() {

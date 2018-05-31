@@ -160,3 +160,6 @@ db_test/
 db_live/
 
 .vs/
+
+*.nupkg
+Releases/
