@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jiratt", "Jiratt\Jiratt.csproj", "{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{C07254D9-DFEE-4A72-AC83-E770162734BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C07254D9-DFEE-4A72-AC83-E770162734BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C07254D9-DFEE-4A72-AC83-E770162734BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
