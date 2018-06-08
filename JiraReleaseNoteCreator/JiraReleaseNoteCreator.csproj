@@ -234,12 +234,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Ui\ChangelogTabItem\Doc\changelog.rst" />
-    <None Include="Ui\LoginView\Doc\login.rst" />
-    <None Include="Ui\MainView\Doc\index.rst" />
-    <None Include="Ui\ProjectsView\Doc\projects.rst" />
-    <None Include="Ui\TimeTracking\Docs\TimeTrackingView.rst" />
-    <None Include="Ui\VersionsView\Doc\versions.rst" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -249,6 +243,8 @@
   <ItemGroup>
     <Folder Include="Extensions\" />
     <Folder Include="Ui\CommitComment\DesignViewModels\" />
+    <Folder Include="Ui\ProjectsView\" />
+    <Folder Include="Ui\VersionsView\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Fonts\fontawesome-webfont.svg" />
