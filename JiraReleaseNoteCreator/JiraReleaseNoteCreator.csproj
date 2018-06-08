@@ -168,9 +168,6 @@
       <DependentUpon>TimeTrackingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Ui\TimeTracking\ViewModels\TimeTrackingViewModel.cs" />
-    <Compile Include="UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Page Include="Controls\CircularTimeProgressStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -204,10 +201,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Ui\TimeTracking\TimeTrackingView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
