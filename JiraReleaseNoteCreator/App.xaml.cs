@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
-
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem;
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem.ViewModels;
 using JiraReleaseNoteCreator.Ui.CommitComment;
@@ -14,7 +13,6 @@ using JiraReleaseNoteCreator.Ui.MainView.ViewModels;
 using JiraReleaseNoteCreator.Ui.TabItem;
 using JiraReleaseNoteCreator.Ui.TabItem.ViewModels;
 using JiraReleaseNoteCreator.Ui.TimeTracking;
-using JiraReleaseNoteCreator.Ui.TimeTracking.DesignViewModels;
 using JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels;
 using Microsoft.Practices.Unity;
 using Squirrel;
@@ -29,13 +27,12 @@ namespace JiraReleaseNoteCreator {
         /// </summary>
         /// <param name="e">Ein <see cref="T:System.Windows.StartupEventArgs" />, das die Ereignisdaten enthält.</param>
         protected override void OnStartup(StartupEventArgs e) {
+            IUnityContainer container = InitContainerAndAppContext();
+            RegisterViewModels(container);
+            RegisterViews(container);
 
-            InitContainerAndAppContext();
-            RegisterViewModels();
-            RegisterViews();
-
-            Ui.MainView.MainWindow window = AppContext.Instance.Container.Resolve<Ui.MainView.MainWindow>();
-            IMainViewModel vm = AppContext.Instance.Container.Resolve<IMainViewModel>();
+            MainWindow window = container.Resolve<MainWindow>();
+            IMainViewModel vm = container.Resolve<IMainViewModel>();
             window.DataContext = vm;
             MainWindow = window;
             MainWindow.Show();
@@ -44,37 +41,31 @@ namespace JiraReleaseNoteCreator {
                 () => { Update(); });
         }
 
+        private static IUnityContainer InitContainerAndAppContext() {
+            return new UnityContainer();
+        }
+
+        private void RegisterViewModels(IUnityContainer container) {
+            container.RegisterType<IMainViewModel, MainViewModel>();
+            container.RegisterType<ITimeTrackingViewModel, TimeTrackingViewModel>();
+            container.RegisterType<ITabItemViewModel, TabItemViewModel>();
+            container.RegisterType<IChangelogTabItemViewModel, ChangelogTabItemViewModel>();
+            container.RegisterType<IIssueTabItemViewModel, IssueTabItemViewModel>();
+            container.RegisterType<ICommitCommentViewModel, CommitCommentViewModel>();
+        }
+
+        private void RegisterViews(IUnityContainer container) {
+            container.RegisterType<MainWindow>();
+        }
+
         private async void Update() {
-            using (var mgr = new UpdateManager("http://www.berndnet-2000.de/Releases/jiratt"))
-            {
-                try
-                {
+            using (var mgr = new UpdateManager("http://www.berndnet-2000.de/Releases/jiratt")) {
+                try {
                     await mgr.UpdateApp();
-                }
-                catch (System.Exception ex)
-                {
+                } catch (Exception ex) {
                     Debug.WriteLine(ex.Message);
                 }
             }
-        }
-
-        private void RegisterViews() {
-            AppContext.Instance.Container.RegisterType<MainWindow>();
-        }
-
-        private void RegisterViewModels() {
-            AppContext.Instance.Container.RegisterType<IMainViewModel,MainViewModel>();
-            AppContext.Instance.Container.RegisterType<ITimeTrackingViewModel, TimeTrackingViewModel>();
-            AppContext.Instance.Container.RegisterType<ITabItemViewModel, TabItemViewModel>();
-            AppContext.Instance.Container.RegisterType<IChangelogTabItemViewModel, ChangelogTabItemViewModel>();
-            AppContext.Instance.Container.RegisterType<IIssueTabItemViewModel, IssueTabItemViewModel>();
-            AppContext.Instance.Container.RegisterType<ICommitCommentViewModel, CommitCommentViewModel>();
-
-        }
-
-        private static void InitContainerAndAppContext() {
-            IUnityContainer container = new UnityContainer();
-            AppContext.Instance.Container = container;
         }
     }
 }

@@ -11,6 +11,7 @@ using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
     public class MainViewModel : BindableBase, IMainViewModel {
+        private readonly IUnityContainer _container;
         private readonly ObservableCollection<ITabItemViewModel> _tabItems = new ObservableCollection<ITabItemViewModel>();
         private Jira _jira;
         private ObservableCollection<Project> _projects = new ObservableCollection<Project>();
@@ -18,6 +19,10 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
         private string _searchIssueKey;
         private Project _selectedProject;
         private ITabItemViewModel _selectedTabItemViewModel;
+
+        public MainViewModel(IUnityContainer container) {
+            _container = container;
+        }
 
         public ObservableCollection<Project> Projects {
             get { return _projects; }
@@ -64,7 +69,7 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
         }
 
         public void Init() {
-            _jira = (Jira) AppContext.Instance.Container.Resolve(typeof(Jira));
+            _jira = _container.Resolve<Jira>();
             FillProjects();
         }
 
@@ -77,7 +82,7 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
             ITabItemViewModel tabItemViewModel = _tabItems.FirstOrDefault(x => x.Project == SelectedProject && x.SearchKey == SearchIssueKey);
 
             if (tabItemViewModel == null) {
-                tabItemViewModel = AppContext.Instance.Container.Resolve<ITabItemViewModel>();
+                tabItemViewModel = _container.Resolve<ITabItemViewModel>();
                 tabItemViewModel.LoadData(SelectedProject, SearchIssueKey, this);
                 _tabItems.Add(tabItemViewModel);
             }
@@ -89,6 +94,10 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
             foreach (Project project in (await _jira.Projects.GetProjectsAsync()).OrderBy(x=>x.Name)) {
                 _projects.Add(project);
             }
+        }
+
+        public void RegisterJiraInstanceAsSingleton(Jira jira) {
+            _container.RegisterInstance(typeof(Jira),jira,new ContainerControlledLifetimeManager());
         }
     }
 }

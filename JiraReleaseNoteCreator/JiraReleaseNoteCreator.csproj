@@ -126,7 +126,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AppContext.cs" />
     <Compile Include="ChangelogModel\ChangelogModel.cs" />
     <Compile Include="ChangelogModel\IssueModel.cs" />
     <Compile Include="ChangelogModel\IssueTypeModel.cs" />

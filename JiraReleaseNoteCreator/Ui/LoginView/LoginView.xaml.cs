@@ -22,7 +22,7 @@ namespace JiraReleaseNoteCreator.Ui.LoginView {
 
         private void DoLogin() {
             if (DataContext is MainViewModel) {
-                AppContext.Instance.Container.RegisterInstance(typeof(Jira),Jira.CreateRestClient(_serverUrl.Text, username.Text, pwd.Password),new ContainerControlledLifetimeManager());
+                ((MainViewModel)DataContext).RegisterJiraInstanceAsSingleton(Jira.CreateRestClient(_serverUrl.Text, username.Text, pwd.Password));
                 ((MainViewModel)DataContext).Init();
             }
         }

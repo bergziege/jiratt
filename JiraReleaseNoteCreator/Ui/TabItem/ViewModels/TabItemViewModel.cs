@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
-
 using Atlassian.Jira;
-
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem;
 using JiraReleaseNoteCreator.Ui.IssueTabItem;
 using JiraReleaseNoteCreator.Ui.MainView;
@@ -12,6 +10,7 @@ using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
     public class TabItemViewModel : BindableBase, ITabItemViewModel {
+        private readonly IUnityContainer _container;
         private readonly Jira _jira;
         private DelegateCommand _closeTabCommand;
         private BindableBase _content;
@@ -20,8 +19,9 @@ namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
         private IMainViewModel _mainViewModel;
         private Project _project;
 
-        public TabItemViewModel(Jira jira) {
+        public TabItemViewModel(Jira jira, IUnityContainer container) {
             _jira = jira;
+            _container = container;
         }
 
         public DelegateCommand CloseTabCommand {
@@ -53,6 +53,7 @@ namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
         public Project Project {
             get { return _project; }
         }
+
         public string SearchKey {
             get { return _contentKey; }
         }
@@ -61,9 +62,11 @@ namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
             if (project == null) {
                 throw new ArgumentNullException("project");
             }
+
             if (contentKey == null) {
                 throw new ArgumentNullException("contentKey");
             }
+
             _project = project;
             _contentKey = contentKey;
             _mainViewModel = mainViewModel;
@@ -107,16 +110,16 @@ namespace JiraReleaseNoteCreator.Ui.TabItem.ViewModels {
 
         private void SetChangelogContent() {
             HeaderText = "Changelog " + _project.Key;
-            IChangelogTabItemViewModel changelogTabItemViewModel = (IChangelogTabItemViewModel) AppContext.Instance.Container.Resolve(typeof(IChangelogTabItemViewModel));
+            IChangelogTabItemViewModel changelogTabItemViewModel = _container.Resolve<IChangelogTabItemViewModel>();
             changelogTabItemViewModel.LoadData(_project);
-            Content = (BindableBase) changelogTabItemViewModel;
+            Content = (BindableBase)changelogTabItemViewModel;
         }
 
         private void SetIssueDetailContent(Issue issue) {
             HeaderText = issue.Key.ToString();
-            IIssueTabItemViewModel issueTabItemViewModel = AppContext.Instance.Container.Resolve<IIssueTabItemViewModel>();
+            IIssueTabItemViewModel issueTabItemViewModel = _container.Resolve<IIssueTabItemViewModel>();
             issueTabItemViewModel.LoadData(_project, issue);
-            Content = (BindableBase) issueTabItemViewModel;
+            Content = (BindableBase)issueTabItemViewModel;
         }
     }
 }
