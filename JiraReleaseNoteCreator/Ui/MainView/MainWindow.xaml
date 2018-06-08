@@ -26,7 +26,7 @@
         </Grid.RowDefinitions>
         <Expander Header="Login"
                   IsExpanded="True"
-                  Background="#00B15F">
+                  Background="#9F9F9F">
             <loginView:LoginView Margin="0"
                                  Padding="5,4,5,6" />
         </Expander>

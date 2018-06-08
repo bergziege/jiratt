@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using JiraReleaseNoteCreator.Ui.ChangelogTabItem;
@@ -27,6 +28,8 @@ namespace JiraReleaseNoteCreator {
         /// </summary>
         /// <param name="e">Ein <see cref="T:System.Windows.StartupEventArgs" />, das die Ereignisdaten enthält.</param>
         protected override void OnStartup(StartupEventArgs e) {
+            Update();
+
             IUnityContainer container = InitContainerAndAppContext();
             RegisterViewModels(container);
             RegisterViews(container);
@@ -37,8 +40,8 @@ namespace JiraReleaseNoteCreator {
             MainWindow = window;
             MainWindow.Show();
 
-            Task.Run(
-                () => { Update(); });
+            //Task.Run(
+            //    () => { Update(); });
         }
 
         private static IUnityContainer InitContainerAndAppContext() {
@@ -59,13 +62,44 @@ namespace JiraReleaseNoteCreator {
         }
 
         private async void Update() {
-            using (var mgr = new UpdateManager("http://www.berndnet-2000.de/Releases/jiratt")) {
-                try {
-                    await mgr.UpdateApp();
-                } catch (Exception ex) {
-                    Debug.WriteLine(ex.Message);
+            // Check for Squirrel application update
+            ReleaseEntry release = null;
+            using (var mgr = new UpdateManager("http://www.berndnet-2000.de/Releases/jiratt"))
+            {
+                //
+                UpdateInfo updateInfo = await mgr.CheckForUpdate();
+                if (updateInfo.ReleasesToApply.Any()) // Check if we have any update
+                {
+                    System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+                    FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+
+                    string msg =    "New version available!" +
+                                    "\n\nCurrent version: " + updateInfo.CurrentlyInstalledVersion.Version +
+                                    "\nNew version: " + updateInfo.FutureReleaseEntry.Version +
+                                    "\n\nUpdate application now?";
+                    MessageBoxResult dialogResult = MessageBox.Show(msg, fvi.ProductName, MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    if (dialogResult == MessageBoxResult.Yes)
+                    {
+                        // Do the update
+                        release = await mgr.UpdateApp();
+                    }
                 }
             }
+
+            // Restart the app
+            if (release!=null)
+            {
+                UpdateManager.RestartApp();
+            }           
+
+
+            //using (var mgr = new UpdateManager("")) {
+            //    try {
+            //        await mgr.UpdateApp();
+            //    } catch (Exception ex) {
+            //        Debug.WriteLine(ex.Message);
+            //    }
+            //}
         }
     }
 }
