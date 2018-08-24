@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using Jiratt.UI.Modules.Login;
 using Jiratt.UI.Shell;
+using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Unity;
 
@@ -12,6 +15,7 @@ namespace Jiratt {
 
         protected override void ConfigureModuleCatalog() {
             base.ConfigureModuleCatalog();
+            AddModule<LoginModule>();
         }
 
         protected override void ConfigureViewModelLocator() {
@@ -35,6 +39,12 @@ namespace Jiratt {
  
         private void RegisterTypeIfMissing<TInterface, TType>() {
             RegisterTypeIfMissing(typeof(TInterface), typeof(TType), false);
+        }
+
+        private void AddModule<T>()
+        {
+            Type moduleType = typeof(T);
+            ModuleCatalog.AddModule(new ModuleInfo(moduleType.Name, moduleType.AssemblyQualifiedName));
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using Jiratt.UI.Modules.Login.ViewCommands;
+using Microsoft.Practices.Unity;
 
 namespace Jiratt {
     /// <summary>
@@ -16,6 +18,9 @@ namespace Jiratt {
             } catch (Exception exception) {
                 throw;
             }
+
+            LoginViewCommand loginViewCommand = bootstrapper.Container.Resolve<LoginViewCommand>();
+            loginViewCommand.Execute();
         }
     }
 }
