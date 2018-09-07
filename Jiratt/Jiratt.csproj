@@ -32,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Jiratt.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Atlassian.Jira, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -106,6 +107,14 @@
     <Compile Include="UI\Modules\Login\LoginModule.cs" />
     <Compile Include="UI\Modules\Login\ViewCommands\LoginViewCommand.cs" />
     <Compile Include="UI\Modules\Login\ViewModels\LoginViewModel.cs" />
+    <Compile Include="UI\Modules\TaskSearch\DesignViewModels\TaskSearchDesignViewModel.cs" />
+    <Compile Include="UI\Modules\TaskSearch\ITaskSearchViewModel.cs" />
+    <Compile Include="UI\Modules\TaskSearch\TaskSearchModule.cs" />
+    <Compile Include="UI\Modules\TaskSearch\TaskSearchView.xaml.cs">
+      <DependentUpon>TaskSearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Modules\TaskSearch\ViewCommands\TaskSearchViewCommand.cs" />
+    <Compile Include="UI\Modules\TaskSearch\ViewModels\TaskSearchViewModel.cs" />
     <Compile Include="UI\Shell\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -144,11 +153,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UI\Modules\TaskSearch\TaskSearchView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Shell\Shell.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="UI\Modules\Changelog\" />
+    <Folder Include="UI\Modules\TaskDetails\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

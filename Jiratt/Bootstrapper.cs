@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Jiratt.UI.Modules.Login;
+using Jiratt.UI.Modules.TaskSearch;
 using Jiratt.UI.Shell;
 using Prism.Modularity;
 using Prism.Mvvm;
@@ -16,6 +17,7 @@ namespace Jiratt {
         protected override void ConfigureModuleCatalog() {
             base.ConfigureModuleCatalog();
             AddModule<LoginModule>();
+            AddModule<TaskSearchModule>();
         }
 
         protected override void ConfigureViewModelLocator() {

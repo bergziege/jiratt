@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Jiratt.UI.Modules.TaskSearch.TaskSearchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Jiratt.UI.Modules.TaskSearch"
+             xmlns:mvvm="http://prismlibrary.com/"
+             xmlns:designViewModels="clr-namespace:Jiratt.UI.Modules.TaskSearch.DesignViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             mvvm:ViewModelLocator.AutoWireViewModel="True">
+    <d:DesignProperties.DataContext>
+        <designViewModels:TaskSearchDesignViewModel />
+    </d:DesignProperties.DataContext>
+    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        
+        <ComboBox></ComboBox>
+        <TextBox Grid.Column="1" />
+        <ListBox Grid.Row="1" />
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Details" />
+    </Grid>
+</UserControl>
