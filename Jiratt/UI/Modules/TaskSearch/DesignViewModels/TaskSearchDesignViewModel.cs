@@ -49,6 +49,6 @@ namespace Jiratt.UI.Modules.TaskSearch.DesignViewModels {
         /// <summary>
         ///     Liefert ein Command um den gewählten Vorgang auszuwählen
         /// </summary>
-        public DelegateCommand SelectIssueCommand { get; }
+        public DelegateCommand ShowDetailsCommand { get; }
     }
 }

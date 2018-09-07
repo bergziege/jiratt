@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Jiratt.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -118,6 +119,8 @@
       <DependentUpon>TaskSearchView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UI\Modules\TaskSearch\ViewCommands\TaskSearchViewCommand.cs" />
+    <Compile Include="UI\Modules\TaskSearch\ViewModels\JiraIssueViewModel.cs" />
+    <Compile Include="UI\Modules\TaskSearch\ViewModels\JiraProjectViewModel.cs" />
     <Compile Include="UI\Modules\TaskSearch\ViewModels\TaskSearchViewModel.cs" />
     <Compile Include="UI\Shell\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>

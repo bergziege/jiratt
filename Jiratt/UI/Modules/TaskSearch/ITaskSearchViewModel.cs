@@ -35,6 +35,6 @@ namespace Jiratt.UI.Modules.TaskSearch {
         /// <summary>
         ///     Liefert ein Command um den gewählten Vorgang auszuwählen
         /// </summary>
-        DelegateCommand SelectIssueCommand { get; }
+        DelegateCommand ShowDetailsCommand { get; }
     }
 }

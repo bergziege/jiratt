@@ -1,4 +1,5 @@
-﻿using Atlassian.Jira;
+﻿using System;
+using Atlassian.Jira;
 using Jiratt.UI.Modules.TaskSearch.ViewCommands;
 using Microsoft.Practices.Unity;
 using Prism.Commands;
@@ -78,6 +79,12 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
         /// </summary>
         /// <param name="jiraClient"></param>
         public void RegisterJiraClient(Jira jiraClient) {
+            try {
+                jiraClient.Projects.GetProjectsAsync().GetAwaiter().GetResult();
+            } catch (Exception ex) {
+                throw new Exception("Fehler in Server URL, Nutzername oder Passwort." + ex.Message);
+            }
+
             _container.RegisterInstance(jiraClient);
             _taskSearchViewCommand.Execute();
         }

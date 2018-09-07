@@ -41,7 +41,7 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox Grid.Row="0" Grid.Column="1" MinWidth="50" Text="{Binding Path=IssueNumber}" Margin="2"/>
+        <TextBox Grid.Row="0" Grid.Column="1" MinWidth="50" Text="{Binding Path=IssueNumber, UpdateSourceTrigger=PropertyChanged}" Margin="2"/>
         <ListBox Grid.Row="1" ItemsSource="{Binding  Path=AvailableIssues}" Grid.ColumnSpan="2" Grid.Column="0" Grid.IsSharedSizeScope="True" SelectedItem="{Binding Path=SelectedIssue}">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="local:IJiraIssueViewModel">
@@ -60,6 +60,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Content="Details anzeigen" Command="{Binding Path=SelectIssueCommand}" Margin="5"/>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Content="Details anzeigen" Command="{Binding Path=ShowDetailsCommand}" Margin="5"/>
     </Grid>
 </UserControl>
