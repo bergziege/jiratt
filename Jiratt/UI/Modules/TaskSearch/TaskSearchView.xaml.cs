@@ -1,27 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 
-namespace Jiratt.UI.Modules.TaskSearch
-{
+namespace Jiratt.UI.Modules.TaskSearch {
     /// <summary>
-    /// Interaktionslogik für TaskSearchView.xaml
+    ///     Interaktionslogik für TaskSearchView.xaml
     /// </summary>
-    public partial class TaskSearchView : UserControl
-    {
-        public TaskSearchView()
-        {
+    public partial class TaskSearchView : UserControl {
+        /// <summary>
+        /// </summary>
+        public TaskSearchView() {
             InitializeComponent();
         }
     }

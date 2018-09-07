@@ -107,7 +107,11 @@
     <Compile Include="UI\Modules\Login\LoginModule.cs" />
     <Compile Include="UI\Modules\Login\ViewCommands\LoginViewCommand.cs" />
     <Compile Include="UI\Modules\Login\ViewModels\LoginViewModel.cs" />
+    <Compile Include="UI\Modules\TaskSearch\DesignViewModels\JiraIssueDesignViewModel.cs" />
+    <Compile Include="UI\Modules\TaskSearch\DesignViewModels\JiraProjectDesignViewModel.cs" />
     <Compile Include="UI\Modules\TaskSearch\DesignViewModels\TaskSearchDesignViewModel.cs" />
+    <Compile Include="UI\Modules\TaskSearch\IJiraIssueViewModel.cs" />
+    <Compile Include="UI\Modules\TaskSearch\IJiraProjectViewModel.cs" />
     <Compile Include="UI\Modules\TaskSearch\ITaskSearchViewModel.cs" />
     <Compile Include="UI\Modules\TaskSearch\TaskSearchModule.cs" />
     <Compile Include="UI\Modules\TaskSearch\TaskSearchView.xaml.cs">

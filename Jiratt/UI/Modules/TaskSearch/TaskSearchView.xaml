@@ -20,13 +20,46 @@
             </Grid.RowDefinitions>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         
-        <ComboBox></ComboBox>
-        <TextBox Grid.Column="1" />
-        <ListBox Grid.Row="1" />
-        <Button Grid.Row="2" Grid.ColumnSpan="2" Content="Details" />
+        <ComboBox ItemsSource="{Binding Path=AvailableProjects}" SelectedItem="{Binding Path=SelectedProject}" Grid.IsSharedSizeScope="True" Margin="2" MinWidth="50">
+            <ComboBox.ItemTemplate>
+                <DataTemplate DataType="local:IJiraProjectViewModel">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="ProjectKey"/>
+                            <ColumnDefinition />
+                            <ColumnDefinition SharedSizeGroup="ProjectName"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="{Binding Path=Key}" Padding="0" Margin="0"/>
+                        <Separator Width="10" Visibility="Hidden" Grid.Column="1" />
+                        <TextBlock Text="{Binding Path=Name}" Grid.Column="2"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <TextBox Grid.Row="0" Grid.Column="1" MinWidth="50" Text="{Binding Path=IssueNumber}" Margin="2"/>
+        <ListBox Grid.Row="1" ItemsSource="{Binding  Path=AvailableIssues}" Grid.ColumnSpan="2" Grid.Column="0" Grid.IsSharedSizeScope="True" SelectedItem="{Binding Path=SelectedIssue}">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="local:IJiraIssueViewModel">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="IssueType"></ColumnDefinition>
+                            <ColumnDefinition SharedSizeGroup="IssueKey"></ColumnDefinition>
+                            <ColumnDefinition SharedSizeGroup="IssueSummary"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Text="{Binding Path=TypeName}" Margin="2"/>
+                        <TextBlock Grid.Column="1" Text="{Binding Path=Key}" Margin="2"/>
+                        <TextBlock Grid.Column="2" Text="{Binding Path=Summary}" Margin="2" MaxWidth="200"/>
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="0" Content="Details anzeigen" Command="{Binding Path=SelectIssueCommand}" Margin="5"/>
     </Grid>
 </UserControl>
