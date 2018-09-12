@@ -108,6 +108,33 @@
     <Compile Include="UI\Modules\Login\LoginModule.cs" />
     <Compile Include="UI\Modules\Login\ViewCommands\LoginViewCommand.cs" />
     <Compile Include="UI\Modules\Login\ViewModels\LoginViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\CommitComment\CommitCommentView.xaml.cs">
+      <DependentUpon>CommitCommentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Modules\TaskDetails\CommitComment\ICommitCommentViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\CommitComment\ViewModels\CommitCommentViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\Controls\CircularTimeProgress.cs" />
+    <Compile Include="UI\Modules\TaskDetails\DesignViewModels\TaskDetailsDesignViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\IssueTabItem\DesignViewModels\IssueTabItemDesignViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\IssueTabItem\IIssueTabItemViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\IssueTabItem\IssueTabItemView.xaml.cs">
+      <DependentUpon>IssueTabItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Modules\TaskDetails\IssueTabItem\ViewModels\IssueTabItemViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\ITaskDetailsViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\TaskDetailsModule.cs" />
+    <Compile Include="UI\Modules\TaskDetails\TaskDetailsView.xaml.cs">
+      <DependentUpon>TaskDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Modules\TaskDetails\TimeTracking\DesignViewModels\TimeTrackingDesignViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\TimeTracking\ITimeTrackingViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\TimeTracking\TimeTrackingView.xaml.cs">
+      <DependentUpon>TimeTrackingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Modules\TaskDetails\TimeTracking\ViewModels\TimeTrackingViewModel.cs" />
+    <Compile Include="UI\Modules\TaskDetails\ViewCommands\Parameters\ShowTaskDetailsViewCommandParameters.cs" />
+    <Compile Include="UI\Modules\TaskDetails\ViewCommands\ShowTaskDetailsViewCommand.cs" />
+    <Compile Include="UI\Modules\TaskDetails\ViewModels\TaskDetailsViewModel.cs" />
     <Compile Include="UI\Modules\TaskSearch\DesignViewModels\JiraIssueDesignViewModel.cs" />
     <Compile Include="UI\Modules\TaskSearch\DesignViewModels\JiraProjectDesignViewModel.cs" />
     <Compile Include="UI\Modules\TaskSearch\DesignViewModels\TaskSearchDesignViewModel.cs" />
@@ -156,9 +183,37 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UI\Modules\Login\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Modules\TaskDetails\CommitComment\CommitCommentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Modules\TaskDetails\Controls\CircularTimeProgressStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Modules\TaskDetails\IssueTabItem\IssueTabItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Modules\TaskDetails\TaskDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Modules\TaskDetails\TimeTracking\TimeTrackingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="UI\Modules\TaskSearch\TaskSearchView.xaml">
       <SubType>Designer</SubType>
@@ -171,7 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UI\Modules\Changelog\" />
-    <Folder Include="UI\Modules\TaskDetails\" />
+    <Folder Include="UI\Modules\TaskDetails\CommitComment\DesignViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

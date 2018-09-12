@@ -1,0 +1,12 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="pack://Application:,,,/Jiratt;component/UI/Modules/TaskDetails/Controls\CircularTimeProgressStyle.xaml" />
+        <ResourceDictionary Source="pack://Application:,,,/Jiratt;component/Themes\Styles.xaml" />
+
+        <!--<ResourceDictionary Source="/TrackingtoolLogistik.WPF;component/Themes/Colors.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="/TrackingtoolLogistik.WPF;component/Views/ScenarioData/ScenarioSimulationReports/Co2WippeControl/Co2WippeStyle.xaml"></ResourceDictionary>-->
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Jiratt.UI.Modules.Login;
+using Jiratt.UI.Modules.TaskDetails;
 using Jiratt.UI.Modules.TaskSearch;
 using Jiratt.UI.Shell;
 using Prism.Modularity;
@@ -28,6 +29,7 @@ namespace Jiratt {
             base.ConfigureModuleCatalog();
             AddModule<LoginModule>();
             AddModule<TaskSearchModule>();
+            AddModule<TaskDetailsModule>();
         }
 
         /// <summary>
