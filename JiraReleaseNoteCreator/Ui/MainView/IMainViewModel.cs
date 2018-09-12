@@ -2,19 +2,17 @@ using System.Collections.ObjectModel;
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
 using JiraReleaseNoteCreator.Ui.TabItem;
 using JiraReleaseNoteCreator.Ui.TabItem.ViewModels;
+using Prism.Commands;
 
 namespace JiraReleaseNoteCreator.Ui.MainView {
-    public interface IMainViewModel : IViewModelBase {
+    public interface IMainViewModel {
         ObservableCollection<Project> Projects { get; set; }
 
         /// <summary>
         /// </summary>
-        RelayCommand SearchIssueByKeyCommand { get; }
+        DelegateCommand SearchIssueByKeyCommand { get; }
 
         string SearchIssueKey { get; set; }
 

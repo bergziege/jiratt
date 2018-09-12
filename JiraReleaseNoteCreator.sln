@@ -1,16 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraReleaseNoteCreator", "JiraReleaseNoteCreator\JiraReleaseNoteCreator.csproj", "{2CE964CF-3DB1-4ADE-A9B2-240228846627}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BD318B5F-EB87-4128-89F9-F89C2A189B57}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraReleaseNoteCreator.Test", "JiraReleaseNoteCreator.Test\JiraReleaseNoteCreator.Test.csproj", "{C07254D9-DFEE-4A72-AC83-E770162734BB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1E52B4A5-5C5C-402F-8DE3-C1DA3D2BFDD6}"
 	ProjectSection(SolutionItems) = preProject
-		index.rst = index.rst
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JiraReleaseNoteCreator.Test", "JiraReleaseNoteCreator.Test\JiraReleaseNoteCreator.Test.csproj", "{C07254D9-DFEE-4A72-AC83-E770162734BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jiratt", "Jiratt\Jiratt.csproj", "{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,8 +28,15 @@ Global
 		{C07254D9-DFEE-4A72-AC83-E770162734BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C07254D9-DFEE-4A72-AC83-E770162734BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C07254D9-DFEE-4A72-AC83-E770162734BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3BCAB62-0EC9-4F87-9808-5C24FE1CB9DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {13008FFD-BEE0-4A64-A059-46911D9A713F}
 	EndGlobalSection
 EndGlobal

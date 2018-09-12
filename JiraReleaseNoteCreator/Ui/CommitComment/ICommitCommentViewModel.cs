@@ -1,11 +1,9 @@
 ﻿using Atlassian.Jira;
-
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
+using Prism.Commands;
 
 namespace JiraReleaseNoteCreator.Ui.CommitComment {
-    public interface ICommitCommentViewModel : IViewModelBase {
-        RelayCommand CopyCommitCommentToClipboardCommand { get; }
+    public interface ICommitCommentViewModel {
+        DelegateCommand CopyCommitCommentToClipboardCommand { get; }
 
         void LoadData(Issue issue);
     }

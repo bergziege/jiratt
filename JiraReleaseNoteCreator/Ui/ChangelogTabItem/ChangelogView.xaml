@@ -25,7 +25,7 @@
         <HeaderedContentControl Header="Änderungen:"
                                 Margin="3"
                                 Grid.Column="1" Template="{StaticResource HeaderedControlWithGrid}">
-            <TextBox Text="{Binding Path=Changelog}"
+            <TextBox Text="{Binding Path=Changelog, Mode=OneWay}"
                      AcceptsReturn="True"
                      AcceptsTab="True"
                      Margin="3" />

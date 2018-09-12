@@ -1,13 +1,12 @@
 ﻿using Atlassian.Jira;
 
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
 using JiraReleaseNoteCreator.Ui.CommitComment;
 using JiraReleaseNoteCreator.Ui.TimeTracking;
 using JiraReleaseNoteCreator.Ui.TimeTracking.DesignViewModels;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.IssueTabItem.DesignViewModels {
-    public class IssueTabItemDesignViewModel : ViewModelBase, IIssueTabItemViewModel {
+    public class IssueTabItemDesignViewModel : BindableBase, IIssueTabItemViewModel {
         public IssueTabItemDesignViewModel() {
             TimeTrackingViewModel = new TimeTrackingDesignViewModel();
         }

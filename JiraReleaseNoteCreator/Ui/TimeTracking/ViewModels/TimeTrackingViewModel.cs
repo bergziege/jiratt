@@ -4,16 +4,15 @@ using System.Windows.Threading;
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons;
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
-    public class TimeTrackingViewModel : ViewModelBase, ITimeTrackingViewModel {
+    public class TimeTrackingViewModel : BindableBase, ITimeTrackingViewModel {
         private readonly DispatcherTimer _dispatcherTimer;
         private string _estimated;
         private Issue _issue;
-        private RelayCommand _logTimeCommand;
+        private DelegateCommand _logTimeCommand;
         private string _logged;
         private string _loggedIncludeNotLogged;
         private string _notLoggedTime;
@@ -21,8 +20,8 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
         private double _percentEstimated;
         private double _percentLogged;
         private double _percentLoggedIncludeNotLogged;
-        private RelayCommand _resetCommand;
-        private RelayCommand _startStopCommand;
+        private DelegateCommand _resetCommand;
+        private DelegateCommand _startStopCommand;
         private IssueTimeTrackingData _timeTrackingData;
 
         public TimeTrackingViewModel() {
@@ -35,14 +34,14 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
             get { return _estimated; }
             private set {
                 _estimated = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.Estimated));
+                RaisePropertyChanged(nameof(Estimated));
             }
         }
 
-        public RelayCommand LogTimeCommand {
+        public DelegateCommand LogTimeCommand {
             get {
                 if (_logTimeCommand == null) {
-                    _logTimeCommand = new RelayCommand("", LogTime, CanLogTime);
+                    _logTimeCommand = new DelegateCommand(LogTime, CanLogTime);
                 }
 
                 return _logTimeCommand;
@@ -53,21 +52,21 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
             get { return _logged; }
             private set {
                 _logged = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.Logged));
+                RaisePropertyChanged(nameof(Logged));
             }
         }
         public string LoggedIncludeNotLogged {
             get { return _loggedIncludeNotLogged; }
             private set {
                 _loggedIncludeNotLogged = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.LoggedIncludeNotLogged));
+                RaisePropertyChanged(nameof(LoggedIncludeNotLogged));
             }
         }
         public string NotLoggedTime {
             get { return _notLoggedTime; }
             private set {
                 _notLoggedTime = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.NotLoggedTime));
+                RaisePropertyChanged(nameof(NotLoggedTime));
             }
         }
 
@@ -75,7 +74,7 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
             get { return _percentEstimated; }
             private set {
                 _percentEstimated = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.PercentEstimated));
+                RaisePropertyChanged(nameof(PercentEstimated));
             }
         }
 
@@ -83,7 +82,7 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
             get { return _percentLogged; }
             private set {
                 _percentLogged = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.PercentLogged));
+                RaisePropertyChanged(nameof(PercentLogged));
             }
         }
 
@@ -91,23 +90,23 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
             get { return _percentLoggedIncludeNotLogged; }
             private set {
                 _percentLoggedIncludeNotLogged = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.PercentLoggedIncludeNotLogged));
+                RaisePropertyChanged(nameof(PercentLoggedIncludeNotLogged));
             }
         }
-        public RelayCommand ResetCommand {
+        public DelegateCommand ResetCommand {
             get {
                 if (_resetCommand == null) {
-                    _resetCommand = new RelayCommand("LABEL", Reset);
+                    _resetCommand = new DelegateCommand(Reset);
                 }
 
                 return _resetCommand;
             }
         }
 
-        public RelayCommand StartStopCommand {
+        public DelegateCommand StartStopCommand {
             get {
                 if (_startStopCommand == null) {
-                    _startStopCommand = new RelayCommand("", StartStop, CanStartStop);
+                    _startStopCommand = new DelegateCommand(StartStop, CanStartStop);
                 }
 
                 return _startStopCommand;
@@ -116,7 +115,7 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
 
         public void LoadData(Issue issue) {
             _issue = issue;
-            _timeTrackingData = _issue.GetTimeTrackingData();
+            _timeTrackingData = _issue.GetTimeTrackingDataAsync().GetAwaiter().GetResult();
             UpdateTimePercents();
         }
 
@@ -136,7 +135,7 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
         }
 
         private void LogTime() {
-            _issue.AddWorklog(SecondsToLoggableTimeString(_notLoggedTimeInSeconds));
+            _issue.AddWorklogAsync(SecondsToLoggableTimeString(_notLoggedTimeInSeconds)).GetAwaiter().GetResult();
             _issue.SaveChanges();
 
             Reset();

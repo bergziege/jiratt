@@ -5,13 +5,11 @@ using System.Linq;
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
 using JiraReleaseNoteCreator.ChangelogModel;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.ChangelogTabItem.ViewModels {
-    public class ChangelogTabItemViewModel: ViewModelBase, IChangelogTabItemViewModel {
+    public class ChangelogTabItemViewModel: BindableBase, IChangelogTabItemViewModel {
         private string _changelog;
         private ObservableCollection<ProjectVersion> _projectVersions = new ObservableCollection<ProjectVersion>();
         private Jira _jira;
@@ -26,7 +24,7 @@ namespace JiraReleaseNoteCreator.Ui.ChangelogTabItem.ViewModels {
             get { return _changelog; }
             private set {
                 _changelog = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.Changelog));
+                RaisePropertyChanged(nameof(Changelog));
             }
         }
         public ObservableCollection<ProjectVersion> ProjectVersions {
@@ -80,7 +78,7 @@ namespace JiraReleaseNoteCreator.Ui.ChangelogTabItem.ViewModels {
             get { return _selectedProjectVersion; }
             set {
                 _selectedProjectVersion = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.SelectedProjectVersions));
+                RaisePropertyChanged(nameof(SelectedProjectVersions));
                 ListChangesInVersions(value);
             }
         }

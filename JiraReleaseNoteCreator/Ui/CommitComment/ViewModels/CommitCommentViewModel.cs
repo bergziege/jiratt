@@ -1,17 +1,16 @@
 ﻿using System.Windows;
 
 using Atlassian.Jira;
-
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.CommitComment.ViewModels {
-    public class CommitCommentViewModel: ViewModelBase, ICommitCommentViewModel {
+    public class CommitCommentViewModel: BindableBase, ICommitCommentViewModel {
         
-        public RelayCommand CopyCommitCommentToClipboardCommand {
+        public DelegateCommand CopyCommitCommentToClipboardCommand {
             get {
                 if (_copyCommitCommentToClipboardCommand == null)
-                    _copyCommitCommentToClipboardCommand = new RelayCommand("", CopyCommitCommentToClipboard);
+                    _copyCommitCommentToClipboardCommand = new DelegateCommand(CopyCommitCommentToClipboard);
 
                 return _copyCommitCommentToClipboardCommand;
             }
@@ -21,7 +20,7 @@ namespace JiraReleaseNoteCreator.Ui.CommitComment.ViewModels {
             _issue = issue;
         }
 
-        private RelayCommand _copyCommitCommentToClipboardCommand;
+        private DelegateCommand _copyCommitCommentToClipboardCommand;
         private Issue _issue;
 
         private void CopyCommitCommentToClipboard() {

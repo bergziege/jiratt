@@ -2,27 +2,26 @@
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
 using JiraReleaseNoteCreator.Ui.IssueTabItem.DesignViewModels;
 using JiraReleaseNoteCreator.Ui.MainView;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.TabItem.DesignViewModels {
-    public class TabItemDesignViewModel: ViewModelBase, ITabItemViewModel {
-        public TabItemDesignViewModel(IViewModelBase content, string header) {
+    public class TabItemDesignViewModel: BindableBase, ITabItemViewModel {
+        public TabItemDesignViewModel(BindableBase content, string header) {
             Content = content;
             HeaderText = header;
         }
 
-        public IViewModelBase Content { get; private set; }
+        public BindableBase Content { get; private set; }
 
         public string HeaderText { get; private set; }
 
         public void LoadData(Project project, string contentKey, IMainViewModel mainViewModel) {
         }
 
-        public RelayCommand CloseTabCommand { get; private set; }
+        public DelegateCommand CloseTabCommand { get; private set; }
 
         public string SearchKey { get; private set; }
 

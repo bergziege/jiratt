@@ -3,24 +3,26 @@ using System.Linq;
 
 using Atlassian.Jira;
 
-using Com.QueoFlow.Commons;
-using Com.QueoFlow.Commons.MVVM.Commands;
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
-using DryIoc;
-
 using JiraReleaseNoteCreator.Ui.TabItem;
 using JiraReleaseNoteCreator.Ui.TabItem.ViewModels;
+using Microsoft.Practices.Unity;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
-    public class MainViewModel : ViewModelBase, IMainViewModel {
+    public class MainViewModel : BindableBase, IMainViewModel {
+        private readonly IUnityContainer _container;
         private readonly ObservableCollection<ITabItemViewModel> _tabItems = new ObservableCollection<ITabItemViewModel>();
         private Jira _jira;
         private ObservableCollection<Project> _projects = new ObservableCollection<Project>();
-        private RelayCommand _searchIssueByKeyCommand;
+        private DelegateCommand _searchIssueByKeyCommand;
         private string _searchIssueKey;
         private Project _selectedProject;
         private ITabItemViewModel _selectedTabItemViewModel;
+
+        public MainViewModel(IUnityContainer container) {
+            _container = container;
+        }
 
         public ObservableCollection<Project> Projects {
             get { return _projects; }
@@ -29,10 +31,10 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
 
         /// <summary>
         /// </summary>
-        public RelayCommand SearchIssueByKeyCommand {
+        public DelegateCommand SearchIssueByKeyCommand {
             get {
                 if (_searchIssueByKeyCommand == null) {
-                    _searchIssueByKeyCommand = new RelayCommand("", CreateTab);
+                    _searchIssueByKeyCommand = new DelegateCommand(CreateTab);
                 }
 
                 return _searchIssueByKeyCommand;
@@ -43,7 +45,7 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
             get { return _searchIssueKey; }
             set {
                 _searchIssueKey = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.SearchIssueKey));
+                RaisePropertyChanged(nameof(SearchIssueKey));
             }
         }
 
@@ -51,13 +53,15 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
             get { return _selectedProject; }
             set {
                 _selectedProject = value;
-                OnPropertyChanged(this.GetPropertyName(x => x.SelectedProject));
+                RaisePropertyChanged(nameof(SelectedProject));
             }
         }
 
         public ITabItemViewModel SelectedTabItemViewModel {
             get { return _selectedTabItemViewModel; }
-            set { _selectedTabItemViewModel = value; OnPropertyChanged(this.GetPropertyName(x => x.SelectedTabItemViewModel)); }
+            set { _selectedTabItemViewModel = value;
+                RaisePropertyChanged(nameof(SelectedTabItemViewModel));
+            }
         }
 
         public ObservableCollection<ITabItemViewModel> TabItems {
@@ -65,7 +69,7 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
         }
 
         public void Init() {
-            _jira = AppContext.Instance.Container.Resolve<Jira>();
+            _jira = _container.Resolve<Jira>();
             FillProjects();
         }
 
@@ -78,18 +82,22 @@ namespace JiraReleaseNoteCreator.Ui.MainView.ViewModels {
             ITabItemViewModel tabItemViewModel = _tabItems.FirstOrDefault(x => x.Project == SelectedProject && x.SearchKey == SearchIssueKey);
 
             if (tabItemViewModel == null) {
-                tabItemViewModel = AppContext.Instance.Container.Resolve<ITabItemViewModel>();
+                tabItemViewModel = _container.Resolve<ITabItemViewModel>();
                 tabItemViewModel.LoadData(SelectedProject, SearchIssueKey, this);
                 _tabItems.Add(tabItemViewModel);
             }
             SelectedTabItemViewModel = tabItemViewModel;
         }
 
-        private void FillProjects() {
+        private async void FillProjects() {
             Projects.Clear();
-            foreach (Project project in _jira.GetProjects()) {
+            foreach (Project project in (await _jira.Projects.GetProjectsAsync()).OrderBy(x=>x.Name)) {
                 _projects.Add(project);
             }
+        }
+
+        public void RegisterJiraInstanceAsSingleton(Jira jira) {
+            _container.RegisterInstance(typeof(Jira),jira,new ContainerControlledLifetimeManager());
         }
     }
 }

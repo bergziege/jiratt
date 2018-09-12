@@ -1,12 +1,10 @@
 ﻿using Atlassian.Jira;
 
-using Com.QueoFlow.Commons.MVVM.ViewModels;
-
 using JiraReleaseNoteCreator.Ui.CommitComment;
 using JiraReleaseNoteCreator.Ui.TimeTracking;
 
 namespace JiraReleaseNoteCreator.Ui.IssueTabItem {
-    public interface IIssueTabItemViewModel : IViewModelBase {
+    public interface IIssueTabItemViewModel {
         Issue SelectedIssue { get; set; }
 
         IssueTimeTrackingData SelectedIssueTimeTrackingData { get; set; }
