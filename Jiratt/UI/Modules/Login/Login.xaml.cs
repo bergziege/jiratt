@@ -16,19 +16,19 @@ namespace Jiratt.UI.Modules.Login {
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e) {
-            ILoginViewModel viewModel = DataContext as ILoginViewModel;
+            ILoginViewModel viewModel = (ILoginViewModel)DataContext;
             try {
                 viewModel?.RegisterJiraClient(Jira.CreateRestClient(Server.Text, Username.Text, Pwd.Password));
-                Error.Text = string.Empty;
+                viewModel.ErrorText = string.Empty;
                 Username.Text = string.Empty;
                 Pwd.Password = string.Empty;
             } catch (Exception ex) {
-                Error.Text = ex.Message;
+                viewModel.ErrorText = ex.Message;
             }
         }
 
         private void Pwd_OnKeyDown(object sender, KeyEventArgs e) {
-            ILoginViewModel viewModel = DataContext as ILoginViewModel;
+            ILoginViewModel viewModel = (ILoginViewModel)DataContext;
             if (viewModel != null) {
                 viewModel.IsPasswordSet = Pwd.SecurePassword.Length > 0;
             }

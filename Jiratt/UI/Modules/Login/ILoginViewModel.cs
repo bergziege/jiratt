@@ -7,6 +7,11 @@ namespace Jiratt.UI.Modules.Login {
     /// </summary>
     public interface ILoginViewModel {
         /// <summary>
+        ///     Liefert oder setzt den Fehlertext
+        /// </summary>
+        string ErrorText { get; set; }
+
+        /// <summary>
         ///     Liefert ein Login Command, von dem eigentlich nur die CanExecute Methode verwendet wird. Das eigentliche Login bzw.
         ///     Erzeugen des Jira CLients erfolgt im Code behind um nicht das "klartext" Passwort unnötig duch die Gegend zu
         ///     schieben.
