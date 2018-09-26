@@ -16,6 +16,7 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
         private bool _isPasswordSet;
         private string _serverUrl;
         private string _username;
+        private string _errorText;
 
         /// <summary>
         /// </summary>
@@ -24,6 +25,14 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
         public LoginViewModel(IUnityContainer container, TaskSearchViewCommand taskSearchViewCommand) {
             _container = container;
             _taskSearchViewCommand = taskSearchViewCommand;
+        }
+
+        /// <summary>
+        ///     Liefert oder setzt den Fehlertext
+        /// </summary>
+        public string ErrorText {
+            get { return _errorText; }
+            set { SetProperty(ref _errorText, value); }
         }
 
         /// <summary>
