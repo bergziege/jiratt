@@ -37,6 +37,6 @@
         <PasswordBox Grid.Row="2" Grid.Column="1" Name="Pwd" KeyUp="Pwd_OnKeyDown"/>
 
         <Button Content="Login" Grid.Row="3" Grid.Column="1" Margin="5" Click="ButtonBase_OnClick" Command="{Binding Path=FakeLoginCommand}"/>
-        <TextBlock Grid.Row="4" Grid.Column="1" Name="Error" TextWrapping="Wrap" Foreground="DarkRed"/>
+        <TextBlock Grid.Row="4" Grid.Column="1" TextWrapping="Wrap" Foreground="DarkRed" Text="{Binding Path=ErrorText}" MaxHeight="100"/>
     </Grid>
 </UserControl>
