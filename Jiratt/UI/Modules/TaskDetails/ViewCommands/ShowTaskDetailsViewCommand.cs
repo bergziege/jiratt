@@ -1,4 +1,5 @@
-﻿using Atlassian.Jira;
+﻿using System.Windows.Input;
+using Atlassian.Jira;
 using Jiratt.UI.Modules.TaskDetails.ViewCommands.Parameters;
 using Jiratt.UI.Shell;
 using Prism.Regions;

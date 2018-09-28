@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using Jiratt.UI.Modules.Login;
+using Jiratt.UI.Modules.NavBack;
 using Jiratt.UI.Modules.TaskDetails;
 using Jiratt.UI.Modules.TaskSearch;
 using Jiratt.UI.Shell;
@@ -30,6 +31,7 @@ namespace Jiratt {
             AddModule<LoginModule>();
             AddModule<TaskSearchModule>();
             AddModule<TaskDetailsModule>();
+            AddModule<NavBackModule>();
         }
 
         /// <summary>

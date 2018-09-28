@@ -1,4 +1,5 @@
-﻿using Jiratt.UI.Shell;
+﻿using System.Windows.Input;
+using Jiratt.UI.Shell;
 using Prism.Regions;
 
 namespace Jiratt.UI.Modules.Login.ViewCommands {

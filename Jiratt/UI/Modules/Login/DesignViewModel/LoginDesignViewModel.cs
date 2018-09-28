@@ -1,4 +1,5 @@
 ﻿using Atlassian.Jira;
+using Jiratt.Common;
 using Prism.Commands;
 
 namespace Jiratt.UI.Modules.Login.DesignViewModel {
@@ -17,7 +18,7 @@ namespace Jiratt.UI.Modules.Login.DesignViewModel {
         ///     Erzeugen des Jira CLients erfolgt im Code behind um nicht das "klartext" Passwort unnötig duch die Gegend zu
         ///     schieben.
         /// </summary>
-        public DelegateCommand FakeLoginCommand { get; }
+        public RelayCommand FakeLoginCommand { get; }
 
         /// <summary>
         ///     Setzt ob in der UI ein Passwort eingegeben wurde

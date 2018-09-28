@@ -1,5 +1,6 @@
 ﻿using System;
 using Atlassian.Jira;
+using Jiratt.Common;
 using Jiratt.UI.Modules.TaskSearch.ViewCommands;
 using Microsoft.Practices.Unity;
 using Prism.Commands;
@@ -12,7 +13,7 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
     public class LoginViewModel : BindableBase, ILoginViewModel {
         private readonly IUnityContainer _container;
         private readonly TaskSearchViewCommand _taskSearchViewCommand;
-        private DelegateCommand _fakeLoginCommand;
+        private RelayCommand _fakeLoginCommand;
         private bool _isPasswordSet;
         private string _serverUrl;
         private string _username;
@@ -40,10 +41,10 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
         ///     Erzeugen des Jira CLients erfolgt im Code behind um nicht das "klartext" Passwort unnötig duch die Gegend zu
         ///     schieben.
         /// </summary>
-        public DelegateCommand FakeLoginCommand {
+        public RelayCommand FakeLoginCommand {
             get {
                 if (_fakeLoginCommand == null) {
-                    _fakeLoginCommand = new DelegateCommand(DoFakeLogin, CanDoLogin);
+                    _fakeLoginCommand = new RelayCommand(DoFakeLogin, CanDoLogin);
                 }
 
                 return _fakeLoginCommand;
@@ -57,7 +58,6 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
             private get { return _isPasswordSet; }
             set {
                 SetProperty(ref _isPasswordSet, value);
-                FakeLoginCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -68,7 +68,6 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
             get { return _serverUrl; }
             set {
                 SetProperty(ref _serverUrl, value);
-                FakeLoginCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -79,7 +78,6 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
             get { return _username; }
             set {
                 SetProperty(ref _username, value);
-                FakeLoginCommand.RaiseCanExecuteChanged();
             }
         }
 

@@ -100,6 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="UI\Modules\Login\DesignViewModel\LoginDesignViewModel.cs" />
     <Compile Include="UI\Modules\Login\ILoginViewModel.cs" />
     <Compile Include="UI\Modules\Login\Login.xaml.cs">
@@ -108,6 +109,13 @@
     <Compile Include="UI\Modules\Login\LoginModule.cs" />
     <Compile Include="UI\Modules\Login\ViewCommands\LoginViewCommand.cs" />
     <Compile Include="UI\Modules\Login\ViewModels\LoginViewModel.cs" />
+    <Compile Include="UI\Modules\NavBack\DesignViewModels\NavBackDesignViewModel.cs" />
+    <Compile Include="UI\Modules\NavBack\INavBackViewModel.cs" />
+    <Compile Include="UI\Modules\NavBack\NavBackModule.cs" />
+    <Compile Include="UI\Modules\NavBack\NavBackView.xaml.cs">
+      <DependentUpon>NavBackView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Modules\NavBack\ViewModels\NavBackViewModel.cs" />
     <Compile Include="UI\Modules\TaskDetails\CommitComment\CommitCommentView.xaml.cs">
       <DependentUpon>CommitCommentView.xaml</DependentUpon>
     </Compile>
@@ -192,6 +200,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Modules\Login\Login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Modules\NavBack\NavBackView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

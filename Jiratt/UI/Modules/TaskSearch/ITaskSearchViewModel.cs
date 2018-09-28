@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Atlassian.Jira;
+using Jiratt.Common;
 using Prism.Commands;
 
 namespace Jiratt.UI.Modules.TaskSearch {
@@ -35,6 +36,6 @@ namespace Jiratt.UI.Modules.TaskSearch {
         /// <summary>
         ///     Liefert ein Command um den gewählten Vorgang auszuwählen
         /// </summary>
-        DelegateCommand ShowDetailsCommand { get; }
+        RelayCommand ShowDetailsCommand { get; }
     }
 }

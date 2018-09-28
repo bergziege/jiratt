@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using Atlassian.Jira;
+using Jiratt.Common;
 using Jiratt.UI.Modules.TaskDetails.ViewCommands;
-using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -17,11 +17,12 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
         private string _issueNumber;
         private IJiraIssueViewModel _selectedIssue;
         private IJiraProjectViewModel _selectedProject;
-        private DelegateCommand _showDetailsCommand;
+        private RelayCommand _showDetailsCommand;
 
         /// <summary>
         /// </summary>
         /// <param name="jiraClient"></param>
+        /// <param name="showTaskDetailsViewCommand"></param>
         public TaskSearchViewModel(Jira jiraClient, ShowTaskDetailsViewCommand showTaskDetailsViewCommand) {
             _jiraClient = jiraClient;
             _showTaskDetailsViewCommand = showTaskDetailsViewCommand;
@@ -45,7 +46,6 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
             set {
                 SetProperty(ref _issueNumber, value);
                 RefreshIssues();
-                ShowDetailsCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -56,7 +56,6 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
             private get { return _selectedIssue; }
             set {
                 SetProperty(ref _selectedIssue, value);
-                ShowDetailsCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -67,21 +66,14 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
             private get { return _selectedProject; }
             set {
                 SetProperty(ref _selectedProject, value, nameof(SelectedProject));
-                ShowDetailsCommand.RaiseCanExecuteChanged();
             }
         }
 
         /// <summary>
         ///     Liefert ein Command um den gewählten Vorgang auszuwählen
         /// </summary>
-        public DelegateCommand ShowDetailsCommand {
-            get {
-                if (_showDetailsCommand == null) {
-                    _showDetailsCommand = new DelegateCommand(ShowDetails, CanShowDetails);
-                }
-
-                return _showDetailsCommand;
-            }
+        public RelayCommand ShowDetailsCommand {
+            get { return _showDetailsCommand ?? (_showDetailsCommand = new RelayCommand(ShowDetails, CanShowDetails)); }
         }
 
         /// <summary>

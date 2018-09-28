@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
+using Jiratt.Common;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -49,6 +50,6 @@ namespace Jiratt.UI.Modules.TaskSearch.DesignViewModels {
         /// <summary>
         ///     Liefert ein Command um den gewählten Vorgang auszuwählen
         /// </summary>
-        public DelegateCommand ShowDetailsCommand { get; }
+        public RelayCommand ShowDetailsCommand { get; }
     }
 }
