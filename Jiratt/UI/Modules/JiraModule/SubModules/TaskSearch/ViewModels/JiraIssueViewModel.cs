@@ -1,7 +1,7 @@
 ﻿using Atlassian.Jira;
 using Prism.Mvvm;
 
-namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewModels {
     /// <summary>
     ///     View Model eines Jira Vorgangs
     /// </summary>

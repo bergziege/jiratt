@@ -1,13 +1,11 @@
 ﻿using System;
 using Atlassian.Jira;
 using Jiratt.Common;
-using Jiratt.UI.Modules.TaskSearch.ViewCommands;
-using Microsoft.Practices.Unity;
-using Prism.Commands;
+using Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewCommands;
 using Prism.Ioc;
 using Prism.Mvvm;
 
-namespace Jiratt.UI.Modules.Login.ViewModels {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.Login.ViewModels {
     /// <summary>
     ///     View Model einer Login View
     /// </summary>

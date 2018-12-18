@@ -1,6 +1,6 @@
 ﻿using Atlassian.Jira;
 
-namespace Jiratt.UI.Modules.TaskSearch {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch {
     /// <summary>
     ///     Schnittstelle für View Models für ein Jira Vorgang
     /// </summary>

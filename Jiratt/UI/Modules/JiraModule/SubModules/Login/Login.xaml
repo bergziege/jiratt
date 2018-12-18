@@ -1,16 +1,15 @@
-﻿<UserControl x:Class="Jiratt.UI.Modules.Login.Login"
+﻿<UserControl x:Class="Jiratt.UI.Modules.JiraModule.SubModules.Login.LoginView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:Jiratt.UI.Modules.Login"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:mvvm="http://prismlibrary.com/"
-             xmlns:designViewModel="clr-namespace:Jiratt.UI.Modules.Login.DesignViewModel"
+             xmlns:designViewModel1="clr-namespace:Jiratt.UI.Modules.JiraModule.SubModules.Login.DesignViewModel"
              mc:Ignorable="d"
              mvvm:ViewModelLocator.AutoWireViewModel="True">
     <d:DesignProperties.DataContext>
-        <designViewModel:LoginDesignViewModel />
+        <designViewModel1:LoginDesignViewModel />
     </d:DesignProperties.DataContext>
     <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
         <Grid.RowDefinitions>

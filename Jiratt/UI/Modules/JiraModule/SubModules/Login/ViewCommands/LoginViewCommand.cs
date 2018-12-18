@@ -1,8 +1,7 @@
-﻿using System.Windows.Input;
-using Jiratt.UI.Shell;
+﻿using Jiratt.UI.Shell;
 using Prism.Regions;
 
-namespace Jiratt.UI.Modules.Login.ViewCommands {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.Login.ViewCommands {
     /// <summary>
     ///     View Command um das Login anzuzeigen
     /// </summary>
@@ -20,7 +19,7 @@ namespace Jiratt.UI.Modules.Login.ViewCommands {
         ///     Navigiert zur Login Ansicht
         /// </summary>
         public void Execute() {
-            _regionManager.RequestNavigate(ShellRegionNames.RightContentRegion, nameof(Login));
+            _regionManager.RequestNavigate(ShellRegionNames.RightContentRegion, nameof(LoginView));
         }
     }
 }

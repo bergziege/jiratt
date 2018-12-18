@@ -4,14 +4,14 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Atlassian.Jira;
 
-namespace Jiratt.UI.Modules.Login {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.Login {
     /// <summary>
     ///     Interaktionslogik für Login.xaml
     /// </summary>
-    public partial class Login : UserControl {
+    public partial class LoginView : UserControl {
         /// <summary>
         /// </summary>
-        public Login() {
+        public LoginView() {
             InitializeComponent();
         }
 

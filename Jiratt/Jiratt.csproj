@@ -118,14 +118,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Common\RelayCommand.cs" />
-    <Compile Include="UI\Modules\Login\DesignViewModel\LoginDesignViewModel.cs" />
-    <Compile Include="UI\Modules\Login\ILoginViewModel.cs" />
-    <Compile Include="UI\Modules\Login\Login.xaml.cs">
+    <Compile Include="UI\Modules\JiraModule\JiraModule.cs" />
+    <Compile Include="UI\Modules\JiraModule\Shell\JiraModuleShell.xaml.cs">
+      <DependentUpon>JiraModuleShell.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Modules\JiraModule\Shell\JiraShellRegionNames.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Login\DesignViewModel\LoginDesignViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Login\ILoginViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Login\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Modules\Login\LoginModule.cs" />
-    <Compile Include="UI\Modules\Login\ViewCommands\LoginViewCommand.cs" />
-    <Compile Include="UI\Modules\Login\ViewModels\LoginViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Login\LoginModule.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Login\ViewCommands\LoginViewCommand.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Login\ViewModels\LoginViewModel.cs" />
     <Compile Include="UI\Modules\TaskDetails\CommitComment\CommitCommentView.xaml.cs">
       <DependentUpon>CommitCommentView.xaml</DependentUpon>
     </Compile>
@@ -151,20 +156,20 @@
     </Compile>
     <Compile Include="UI\Modules\TaskDetails\TimeTracking\ViewModels\TimeTrackingViewModel.cs" />
     <Compile Include="UI\Modules\TaskDetails\ViewModels\TaskDetailsViewModel.cs" />
-    <Compile Include="UI\Modules\TaskSearch\DesignViewModels\JiraIssueDesignViewModel.cs" />
-    <Compile Include="UI\Modules\TaskSearch\DesignViewModels\JiraProjectDesignViewModel.cs" />
-    <Compile Include="UI\Modules\TaskSearch\DesignViewModels\TaskSearchDesignViewModel.cs" />
-    <Compile Include="UI\Modules\TaskSearch\IJiraIssueViewModel.cs" />
-    <Compile Include="UI\Modules\TaskSearch\IJiraProjectViewModel.cs" />
-    <Compile Include="UI\Modules\TaskSearch\ITaskSearchViewModel.cs" />
-    <Compile Include="UI\Modules\TaskSearch\TaskSearchModule.cs" />
-    <Compile Include="UI\Modules\TaskSearch\TaskSearchView.xaml.cs">
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\DesignViewModels\JiraIssueDesignViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\DesignViewModels\JiraProjectDesignViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\DesignViewModels\TaskSearchDesignViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\IJiraIssueViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\IJiraProjectViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\ITaskSearchViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\TaskSearchModule.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\TaskSearchView.xaml.cs">
       <DependentUpon>TaskSearchView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Modules\TaskSearch\ViewCommands\TaskSearchViewCommand.cs" />
-    <Compile Include="UI\Modules\TaskSearch\ViewModels\JiraIssueViewModel.cs" />
-    <Compile Include="UI\Modules\TaskSearch\ViewModels\JiraProjectViewModel.cs" />
-    <Compile Include="UI\Modules\TaskSearch\ViewModels\TaskSearchViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\ViewCommands\TaskSearchViewCommand.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\ViewModels\JiraIssueViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\ViewModels\JiraProjectViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\ViewModels\TaskSearchViewModel.cs" />
     <Compile Include="UI\Shell\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -206,7 +211,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Modules\Login\Login.xaml">
+    <Page Include="UI\Modules\JiraModule\Shell\JiraModuleShell.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UI\Modules\JiraModule\SubModules\Login\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -230,7 +239,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Modules\TaskSearch\TaskSearchView.xaml">
+    <Page Include="UI\Modules\JiraModule\SubModules\TaskSearch\TaskSearchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -240,8 +249,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="UI\Modules\Changelog\" />
-    <Folder Include="UI\Modules\SubRegionTest\" />
     <Folder Include="UI\Modules\TaskDetails\CommitComment\DesignViewModels\" />
   </ItemGroup>
   <ItemGroup>

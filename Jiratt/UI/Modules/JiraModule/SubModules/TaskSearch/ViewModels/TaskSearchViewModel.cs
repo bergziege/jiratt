@@ -6,7 +6,7 @@ using Jiratt.Common;
 using Prism.Mvvm;
 using Prism.Regions;
 
-namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewModels {
     /// <summary>
     ///     View Model zur Suche und Auswahl eines Vorganges
     /// </summary>

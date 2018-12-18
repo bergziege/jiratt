@@ -1,7 +1,7 @@
 ﻿using Atlassian.Jira;
 using Prism.Mvvm;
 
-namespace Jiratt.UI.Modules.TaskSearch.DesignViewModels {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.DesignViewModels {
     /// <summary>
     ///     Design View Model für ein Jira Vorgang
     /// </summary>

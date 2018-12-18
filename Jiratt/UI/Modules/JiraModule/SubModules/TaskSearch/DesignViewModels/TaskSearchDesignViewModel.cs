@@ -1,10 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Jiratt.Common;
-using Prism.Commands;
 using Prism.Mvvm;
 
-namespace Jiratt.UI.Modules.TaskSearch.DesignViewModels {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.DesignViewModels {
     /// <summary>
     ///     Design View Model einer Ansicht zur Suche und Auswahl eines Vorganges
     /// </summary>

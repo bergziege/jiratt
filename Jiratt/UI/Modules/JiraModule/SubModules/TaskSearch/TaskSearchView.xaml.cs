@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Jiratt.UI.Modules.TaskSearch {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch {
     /// <summary>
     ///     Interaktionslogik für TaskSearchView.xaml
     /// </summary>

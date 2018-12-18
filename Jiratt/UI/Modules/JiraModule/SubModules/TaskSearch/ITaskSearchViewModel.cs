@@ -1,9 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using Atlassian.Jira;
 using Jiratt.Common;
-using Prism.Commands;
 
-namespace Jiratt.UI.Modules.TaskSearch {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch {
     /// <summary>
     ///     Schnittstelle für View Models zur Suche und Auswahl eines Vorganges
     /// </summary>

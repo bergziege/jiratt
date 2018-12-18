@@ -1,8 +1,8 @@
-﻿using System.Windows.Input;
+﻿using Jiratt.UI.Modules.JiraModule.Shell;
 using Jiratt.UI.Shell;
 using Prism.Regions;
 
-namespace Jiratt.UI.Modules.TaskSearch.ViewCommands {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewCommands {
     /// <summary>
     ///     Command für die Tasksuche
     /// </summary>
@@ -20,7 +20,7 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewCommands {
         ///     Navigiert zur Tasksuche
         /// </summary>
         public void Execute() {
-            _regionManager.RequestNavigate(ShellRegionNames.RightContentRegion, nameof(TaskSearchView));
+            _regionManager.RequestNavigate(JiraShellRegionNames.MainContent, nameof(TaskSearchView));
         }
     }
 }

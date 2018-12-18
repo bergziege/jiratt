@@ -1,9 +1,10 @@
 ﻿using System.Threading;
 using System.Windows;
 using Jiratt.Services.Worker;
-using Jiratt.UI.Modules.Login;
+using Jiratt.UI.Modules.JiraModule;
+using Jiratt.UI.Modules.JiraModule.SubModules.Login;
+using Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch;
 using Jiratt.UI.Modules.TaskDetails;
-using Jiratt.UI.Modules.TaskSearch;
 using Jiratt.UI.Shell;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -20,9 +21,8 @@ namespace Jiratt {
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog) {
             base.ConfigureModuleCatalog(moduleCatalog);
 
-            moduleCatalog.AddModule<LoginModule>();
+            moduleCatalog.AddModule<JiraModule>();
             moduleCatalog.AddModule<TaskDetailsModule>();
-            moduleCatalog.AddModule<TaskSearchModule>();
         }
 
         /// <summary>Creates the shell or main window of the application.</summary>
