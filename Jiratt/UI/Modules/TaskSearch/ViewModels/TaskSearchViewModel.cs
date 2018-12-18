@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Atlassian.Jira;
 using Jiratt.Common;
-using Jiratt.UI.Modules.TaskDetails.ViewCommands;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -13,7 +12,6 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
     /// </summary>
     public class TaskSearchViewModel : BindableBase, ITaskSearchViewModel, INavigationAware {
         private readonly Jira _jiraClient;
-        private readonly ShowTaskDetailsViewCommand _showTaskDetailsViewCommand;
         private string _issueNumber;
         private IJiraIssueViewModel _selectedIssue;
         private IJiraProjectViewModel _selectedProject;
@@ -22,10 +20,8 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
         /// <summary>
         /// </summary>
         /// <param name="jiraClient"></param>
-        /// <param name="showTaskDetailsViewCommand"></param>
-        public TaskSearchViewModel(Jira jiraClient, ShowTaskDetailsViewCommand showTaskDetailsViewCommand) {
+        public TaskSearchViewModel(Jira jiraClient) {
             _jiraClient = jiraClient;
-            _showTaskDetailsViewCommand = showTaskDetailsViewCommand;
         }
 
         /// <summary>
@@ -54,9 +50,7 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
         /// </summary>
         public IJiraIssueViewModel SelectedIssue {
             private get { return _selectedIssue; }
-            set {
-                SetProperty(ref _selectedIssue, value);
-            }
+            set { SetProperty(ref _selectedIssue, value); }
         }
 
         /// <summary>
@@ -64,9 +58,7 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
         /// </summary>
         public IJiraProjectViewModel SelectedProject {
             private get { return _selectedProject; }
-            set {
-                SetProperty(ref _selectedProject, value, nameof(SelectedProject));
-            }
+            set { SetProperty(ref _selectedProject, value, nameof(SelectedProject)); }
         }
 
         /// <summary>
@@ -107,13 +99,10 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
         private async void RefreshIssues() {
             AvailableIssues.Clear();
             if (SelectedProject != null) {
-                try
-                {
+                try {
                     Issue issue = await _jiraClient.Issues.GetIssueAsync(SelectedProject.Key + "-" + IssueNumber);
                     AvailableIssues.Add(new JiraIssueViewModel(issue));
-                }
-                catch (InvalidOperationException)
-                {
+                } catch (InvalidOperationException) {
                     /* Z.B: Vorgang nicht gefunden */
                 }
             }
@@ -127,7 +116,6 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewModels {
         }
 
         private void ShowDetails() {
-            _showTaskDetailsViewCommand.Execute(SelectedIssue.Issue);
         }
     }
 }

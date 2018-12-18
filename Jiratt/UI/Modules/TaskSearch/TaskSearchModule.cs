@@ -1,10 +1,9 @@
 ﻿using Jiratt.UI.Modules.TaskSearch.ViewCommands;
 using Jiratt.UI.Modules.TaskSearch.ViewModels;
-using Microsoft.Practices.Unity;
+using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Mvvm;
 using Prism.Regions;
-using Prism.Unity;
 
 namespace Jiratt.UI.Modules.TaskSearch {
     /// <summary>
@@ -12,28 +11,24 @@ namespace Jiratt.UI.Modules.TaskSearch {
     /// </summary>
     public class TaskSearchModule : IModule {
         private readonly IRegionManager _regionManager;
-        private readonly IUnityContainer _unityContainer;
 
         /// <summary>
         /// </summary>
         /// <param name="regionManager"></param>
         /// <param name="unityContainer"></param>
-        public TaskSearchModule(IRegionManager regionManager, IUnityContainer unityContainer) {
+        public TaskSearchModule(IRegionManager regionManager) {
             _regionManager = regionManager;
-            _unityContainer = unityContainer;
         }
 
-        /// <summary>Notifies the module that it has be initialized.</summary>
-        public void Initialize() {
-            RegisterTypes();
+        public void OnInitialized(IContainerProvider containerProvider) {
         }
 
         /// <summary>
         /// </summary>
-        private void RegisterTypes() {
-            _unityContainer.RegisterTypeForNavigation<TaskSearchView>();
-            _unityContainer.RegisterType<ITaskSearchViewModel, TaskSearchViewModel>();
-            _unityContainer.RegisterType<TaskSearchViewCommand>();
+        public void RegisterTypes(IContainerRegistry containerRegistry) {
+            containerRegistry.RegisterForNavigation<TaskSearchView>();
+            containerRegistry.Register<ITaskSearchViewModel, TaskSearchViewModel>();
+            containerRegistry.Register<TaskSearchViewCommand>();
 
             ViewModelLocationProvider.Register<TaskSearchView, ITaskSearchViewModel>();
         }

@@ -144,7 +144,7 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
         private void Reset() {
             _notLoggedTimeInSeconds = 0;
             NotLoggedTime = "0m";
-            _timeTrackingData = _issue.GetTimeTrackingData();
+            _timeTrackingData = _issue.GetTimeTrackingDataAsync().GetAwaiter().GetResult();
             UpdateTimePercents();
             UpdateNotLoggedTimeAsString();
         }
@@ -181,8 +181,8 @@ namespace JiraReleaseNoteCreator.Ui.TimeTracking.ViewModels {
         }
 
         private void UpdateTimePercents() {
-            int secondsEstimated = _timeTrackingData.OriginalEstimateInSeconds;
-            int secondsLogged = _timeTrackingData.TimeSpentInSeconds;
+            int secondsEstimated = _timeTrackingData.OriginalEstimateInSeconds.Value;
+            int secondsLogged = _timeTrackingData.TimeSpentInSeconds.Value;
             int secondsNotLogged = _notLoggedTimeInSeconds;
             if (secondsEstimated == secondsLogged + secondsNotLogged) {
                 PercentEstimated = 100;

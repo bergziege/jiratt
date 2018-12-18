@@ -4,6 +4,7 @@ using Jiratt.Common;
 using Jiratt.UI.Modules.TaskSearch.ViewCommands;
 using Microsoft.Practices.Unity;
 using Prism.Commands;
+using Prism.Ioc;
 using Prism.Mvvm;
 
 namespace Jiratt.UI.Modules.Login.ViewModels {
@@ -11,7 +12,7 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
     ///     View Model einer Login View
     /// </summary>
     public class LoginViewModel : BindableBase, ILoginViewModel {
-        private readonly IUnityContainer _container;
+        private readonly IContainerRegistry _container;
         private readonly TaskSearchViewCommand _taskSearchViewCommand;
         private RelayCommand _fakeLoginCommand;
         private bool _isPasswordSet;
@@ -23,7 +24,7 @@ namespace Jiratt.UI.Modules.Login.ViewModels {
         /// </summary>
         /// <param name="container"></param>
         /// <param name="taskSearchViewCommand"></param>
-        public LoginViewModel(IUnityContainer container, TaskSearchViewCommand taskSearchViewCommand) {
+        public LoginViewModel(IContainerRegistry container, TaskSearchViewCommand taskSearchViewCommand) {
             _container = container;
             _taskSearchViewCommand = taskSearchViewCommand;
         }

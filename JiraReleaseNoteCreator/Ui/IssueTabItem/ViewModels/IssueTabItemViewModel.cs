@@ -30,7 +30,7 @@ namespace JiraReleaseNoteCreator.Ui.IssueTabItem.ViewModels {
                 _selectedIssue = value;
                 RaisePropertyChanged(nameof(SelectedIssue));
                 if (_selectedIssue != null) {
-                    SelectedIssueTimeTrackingData = _selectedIssue.GetTimeTrackingData();
+                    SelectedIssueTimeTrackingData = _selectedIssue.GetTimeTrackingDataAsync().GetAwaiter().GetResult();
                     TimeTrackingViewModel.LoadData(_selectedIssue);
                 } else {
                     SelectedIssueTimeTrackingData = null;

@@ -6,7 +6,6 @@ using Prism.Mvvm;
 namespace Jiratt.UI.Modules.TaskDetails.IssueTabItem.ViewModels {
     public class IssueTabItemViewModel : BindableBase, IIssueTabItemViewModel {
         private ICommitCommentViewModel _commitCommentViewModel;
-        private readonly Jira _jira;
         private Issue _selectedIssue;
         private IssueTimeTrackingData _selectedIssueTimeTrackingData;
         private ITimeTrackingViewModel _timeTrackingViewModel;
@@ -14,8 +13,7 @@ namespace Jiratt.UI.Modules.TaskDetails.IssueTabItem.ViewModels {
         /// <summary>
         ///     Initialisiert eine neue Instanz der <see cref="T:System.Object" />-Klasse.
         /// </summary>
-        public IssueTabItemViewModel(Jira jira, ITimeTrackingViewModel timeTrackingViewModel, ICommitCommentViewModel commitCommentViewModel) {
-            _jira = jira;
+        public IssueTabItemViewModel(ITimeTrackingViewModel timeTrackingViewModel, ICommitCommentViewModel commitCommentViewModel) {
             TimeTrackingViewModel = timeTrackingViewModel;
             CommitCommentViewModel = commitCommentViewModel;
         }
@@ -34,7 +32,7 @@ namespace Jiratt.UI.Modules.TaskDetails.IssueTabItem.ViewModels {
                 _selectedIssue = value;
                 RaisePropertyChanged(nameof(SelectedIssue));
                 if (_selectedIssue != null) {
-                    SelectedIssueTimeTrackingData = _selectedIssue.GetTimeTrackingData();
+                    SelectedIssueTimeTrackingData = _selectedIssue.GetTimeTrackingDataAsync().GetAwaiter().GetResult();
                     TimeTrackingViewModel.LoadData(_selectedIssue);
                 } else {
                     SelectedIssueTimeTrackingData = null;
@@ -64,7 +62,7 @@ namespace Jiratt.UI.Modules.TaskDetails.IssueTabItem.ViewModels {
         }
 
         public void LoadData(string issueKey) {
-            SelectedIssue = _jira.Issues.GetIssueAsync(issueKey).GetAwaiter().GetResult();
+            //SelectedIssue = _jira.Issues.GetIssueAsync(issueKey).GetAwaiter().GetResult();
             CommitCommentViewModel.LoadData(SelectedIssue);
         }
     }

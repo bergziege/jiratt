@@ -32,7 +32,7 @@ namespace JiraReleaseNoteCreator.Ui.ChangelogTabItem.ViewModels {
             set { _projectVersions = value; }
         }
 
-        private void ListChangesInVersions(IList<ProjectVersion> versions) {
+        private async void ListChangesInVersions(IList<ProjectVersion> versions) {
             if (versions == null) {
                 Changelog = string.Empty;
                 return;
@@ -42,7 +42,7 @@ namespace JiraReleaseNoteCreator.Ui.ChangelogTabItem.ViewModels {
 
             foreach (ProjectVersion version in versions) {
                 List<Issue> issuesInVersion =
-                        _jira.GetIssuesFromJql("project = " + _project.Key + " AND fixVersion = '" + version.Name + "'").ToList();
+                        (await _jira.Issues.GetIssuesFromJqlAsync("project = " + _project.Key + " AND fixVersion = '" + version.Name + "'")).ToList();
                 VersionModel versionModel = new VersionModel();
                 versionModel.Version = version.Name;
                 foreach (Issue issue in issuesInVersion) {
@@ -67,9 +67,9 @@ namespace JiraReleaseNoteCreator.Ui.ChangelogTabItem.ViewModels {
 
 
 
-        private void ListVersionsForProject() {
+        private async void ListVersionsForProject() {
             ProjectVersions.Clear();
-            foreach (ProjectVersion projectVersion in _jira.GetProjectVersions(_project.Key)) {
+            foreach (ProjectVersion projectVersion in await _jira.Versions.GetVersionsAsync(_project.Key)) {
                 ProjectVersions.Add(projectVersion);
             }
         }

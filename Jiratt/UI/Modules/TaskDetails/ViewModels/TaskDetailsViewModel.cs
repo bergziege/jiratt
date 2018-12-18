@@ -1,5 +1,4 @@
 ﻿using Jiratt.UI.Modules.TaskDetails.IssueTabItem;
-using Jiratt.UI.Modules.TaskDetails.ViewCommands.Parameters;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -26,8 +25,8 @@ namespace Jiratt.UI.Modules.TaskDetails.ViewModels {
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext) {
-            ShowTaskDetailsViewCommandParameters showTaskDetailsViewCommandParameters = navigationContext.Parameters["params"] as ShowTaskDetailsViewCommandParameters;
-            IssueTabItemViewModel.LoadData(showTaskDetailsViewCommandParameters.IssueKey);
+            //ShowTaskDetailsViewCommandParameters showTaskDetailsViewCommandParameters = navigationContext.Parameters["params"] as ShowTaskDetailsViewCommandParameters;
+            //IssueTabItemViewModel.LoadData(showTaskDetailsViewCommandParameters.IssueKey);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext) {
