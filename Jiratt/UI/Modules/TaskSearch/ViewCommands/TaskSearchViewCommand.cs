@@ -20,7 +20,7 @@ namespace Jiratt.UI.Modules.TaskSearch.ViewCommands {
         ///     Navigiert zur Tasksuche
         /// </summary>
         public void Execute() {
-            _regionManager.RequestNavigate(ShellRegionNames.MainRegion, nameof(TaskSearchView));
+            _regionManager.RequestNavigate(ShellRegionNames.RightContentRegion, nameof(TaskSearchView));
         }
     }
 }

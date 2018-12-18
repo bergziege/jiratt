@@ -34,11 +34,11 @@ namespace Jiratt.UI.Modules.NavBack.ViewModels {
         }
 
         private bool CanGoBack() {
-            return _regionManager.Regions[ShellRegionNames.MainRegion].NavigationService.Journal.CanGoBack;
+            return _regionManager.Regions[ShellRegionNames.CenterRegion].NavigationService.Journal.CanGoBack;
         }
 
         private void NavigateBack() {
-            _regionManager.Regions[ShellRegionNames.MainRegion].NavigationService.Journal.GoBack();
+            _regionManager.Regions[ShellRegionNames.CenterRegion].NavigationService.Journal.GoBack();
         }
     }
 }

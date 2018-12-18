@@ -20,7 +20,7 @@ namespace Jiratt.UI.Modules.Login.ViewCommands {
         ///     Navigiert zur Login Ansicht
         /// </summary>
         public void Execute() {
-            _regionManager.RequestNavigate(ShellRegionNames.MainRegion, nameof(Login));
+            _regionManager.RequestNavigate(ShellRegionNames.RightContentRegion, nameof(Login));
         }
     }
 }

@@ -8,37 +8,20 @@
         mc:Ignorable="d"
         Title="Shell" Height="450" Width="800">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-        <Grid Background="#2F2F2F">
-            <ItemsControl Grid.Column="0"
-                          regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.RightStatusBarRegion}"
-                          HorizontalAlignment="Right"
-                          VerticalAlignment="Center"
-                          Height="30"
-                          VerticalContentAlignment="Center">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-            <ItemsControl Grid.Column="0"
-                          regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.LeftStatusBarRegion}"
-                          HorizontalAlignment="Left"
-                          VerticalAlignment="Center"
-                          VerticalContentAlignment="Center">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-            </ItemsControl>
-        </Grid>
-        <ContentControl Grid.Row="1"
-                        regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.MainRegion}" />
+        <ContentControl Grid.Column="0"
+                        regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.LeftContentRegion}" />
+
+        <ContentControl Grid.Column="1"
+                        regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.CenterRegion}" />
+
+        <ContentControl Grid.Column="2"
+                        regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.RightContentRegion}" />
+        
     </Grid>
 </Window>

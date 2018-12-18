@@ -6,16 +6,16 @@
         /// <summary>
         ///     Rechte Seite in der Statusbar
         /// </summary>
-        public static string RightStatusBarRegion = "RightStatusBarRegion";
+        public static string RightContentRegion = "RightContentRegion";
 
         /// <summary>
         ///     Linke Seite in der Statusbar
         /// </summary>
-        public static string LeftStatusBarRegion = "LeftStatusBarRegion";
+        public static string LeftContentRegion = "LeftContentRegion";
 
         /// <summary>
         ///     Main
         /// </summary>
-        public static string MainRegion = "MainRegion";
+        public static string CenterRegion = "CenterRegion";
     }
 }

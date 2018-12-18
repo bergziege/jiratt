@@ -31,7 +31,7 @@ namespace Jiratt {
             AddModule<LoginModule>();
             AddModule<TaskSearchModule>();
             AddModule<TaskDetailsModule>();
-            AddModule<NavBackModule>();
+            //AddModule<NavBackModule>();
         }
 
         /// <summary>

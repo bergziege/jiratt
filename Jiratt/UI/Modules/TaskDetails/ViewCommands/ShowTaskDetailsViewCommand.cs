@@ -25,7 +25,7 @@ namespace Jiratt.UI.Modules.TaskDetails.ViewCommands {
         public void Execute(Issue issue) {
             NavigationParameters navParams = new NavigationParameters();
             navParams.Add("params", new ShowTaskDetailsViewCommandParameters(issue.Key.ToString()));
-            _regionManager.RequestNavigate(ShellRegionNames.MainRegion, nameof(TaskDetailsView), navParams);
+            _regionManager.RequestNavigate(ShellRegionNames.CenterRegion, nameof(TaskDetailsView), navParams);
         }
     }
 }

@@ -23,7 +23,7 @@ namespace Jiratt.UI.Modules.NavBack {
 
         public void Initialize() {
             RegisterTypes();
-            _regionManager.RequestNavigate(ShellRegionNames.LeftStatusBarRegion, nameof(NavBackView));
+            _regionManager.RequestNavigate(ShellRegionNames.LeftContentRegion, nameof(NavBackView));
         }
 
         private void RegisterTypes()
