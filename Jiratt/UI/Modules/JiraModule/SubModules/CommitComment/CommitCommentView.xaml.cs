@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace Jiratt.UI.Modules.TaskDetails.CommitComment {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.CommitComment {
     /// <summary>
     /// Interaktionslogik für CommitCommentView.xaml
     /// </summary>

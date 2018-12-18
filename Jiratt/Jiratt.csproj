@@ -131,31 +131,19 @@
     <Compile Include="UI\Modules\JiraModule\SubModules\Login\LoginModule.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\Login\ViewCommands\LoginViewCommand.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\Login\ViewModels\LoginViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\CommitComment\CommitCommentView.xaml.cs">
+    <Compile Include="UI\Modules\JiraModule\SubModules\CommitComment\CommitCommentView.xaml.cs">
       <DependentUpon>CommitCommentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Modules\TaskDetails\CommitComment\ICommitCommentViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\CommitComment\ViewModels\CommitCommentViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\Controls\CircularTimeProgress.cs" />
-    <Compile Include="UI\Modules\TaskDetails\DesignViewModels\TaskDetailsDesignViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\IssueTabItem\DesignViewModels\IssueTabItemDesignViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\IssueTabItem\IIssueTabItemViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\IssueTabItem\IssueTabItemView.xaml.cs">
-      <DependentUpon>IssueTabItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Modules\TaskDetails\IssueTabItem\ViewModels\IssueTabItemViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\ITaskDetailsViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\TaskDetailsModule.cs" />
-    <Compile Include="UI\Modules\TaskDetails\TaskDetailsView.xaml.cs">
-      <DependentUpon>TaskDetailsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Modules\TaskDetails\TimeTracking\DesignViewModels\TimeTrackingDesignViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\TimeTracking\ITimeTrackingViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\TimeTracking\TimeTrackingView.xaml.cs">
+    <Compile Include="UI\Modules\JiraModule\SubModules\CommitComment\ICommitCommentViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\CommitComment\ViewModels\CommitCommentViewModel.cs" />
+    <Compile Include="CommonControls\CircularTimeProgress.cs" />
+    <Compile Include="UI\Modules\StartStopModule\StartStopModule.cs" />
+    <Compile Include="UI\Modules\StartStopModule\DesignViewModels\TimeTrackingDesignViewModel.cs" />
+    <Compile Include="UI\Modules\StartStopModule\ITimeTrackingViewModel.cs" />
+    <Compile Include="UI\Modules\StartStopModule\TimeTrackingView.xaml.cs">
       <DependentUpon>TimeTrackingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Modules\TaskDetails\TimeTracking\ViewModels\TimeTrackingViewModel.cs" />
-    <Compile Include="UI\Modules\TaskDetails\ViewModels\TaskDetailsViewModel.cs" />
+    <Compile Include="UI\Modules\StartStopModule\ViewModels\TimeTrackingViewModel.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\DesignViewModels\JiraIssueDesignViewModel.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\DesignViewModels\JiraProjectDesignViewModel.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\DesignViewModels\TaskSearchDesignViewModel.cs" />
@@ -219,23 +207,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Modules\TaskDetails\CommitComment\CommitCommentView.xaml">
+    <Page Include="UI\Modules\JiraModule\SubModules\CommitComment\CommitCommentView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Modules\TaskDetails\Controls\CircularTimeProgressStyle.xaml">
+    <Page Include="CommonControls\CircularTimeProgressStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="UI\Modules\TaskDetails\IssueTabItem\IssueTabItemView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UI\Modules\TaskDetails\TaskDetailsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Modules\TaskDetails\TimeTracking\TimeTrackingView.xaml">
+    <Page Include="UI\Modules\StartStopModule\TimeTrackingView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -248,9 +228,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UI\Modules\TaskDetails\CommitComment\DesignViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Jiratt.Services\Jiratt.Services.csproj">
       <Project>{64b80252-b18e-4e87-b505-fa29d15020be}</Project>

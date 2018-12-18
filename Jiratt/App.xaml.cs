@@ -4,7 +4,7 @@ using Jiratt.Services.Worker;
 using Jiratt.UI.Modules.JiraModule;
 using Jiratt.UI.Modules.JiraModule.SubModules.Login;
 using Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch;
-using Jiratt.UI.Modules.TaskDetails;
+using Jiratt.UI.Modules.StartStopModule;
 using Jiratt.UI.Shell;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -22,7 +22,7 @@ namespace Jiratt {
             base.ConfigureModuleCatalog(moduleCatalog);
 
             moduleCatalog.AddModule<JiraModule>();
-            moduleCatalog.AddModule<TaskDetailsModule>();
+            moduleCatalog.AddModule<StartStopModule>();
         }
 
         /// <summary>Creates the shell or main window of the application.</summary>
@@ -40,10 +40,10 @@ namespace Jiratt {
 
             Thread workerThread = new Thread(
                 () => {
-                    containerRegistry.Register<TimeTrackerWorker>();
+                    containerRegistry.RegisterSingleton<GlobalTimer>();
 
                     /* TTW einmalig auflösen, damit dieser initialisiert wird. */
-                    Container.Resolve<TimeTrackerWorker>();
+                    Container.Resolve<GlobalTimer>();
                 });
             workerThread.Start();
         }

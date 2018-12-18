@@ -17,5 +17,10 @@
         ///     Main
         /// </summary>
         public static string CenterRegion = "CenterRegion";
+
+        /// <summary>
+        ///     Status Bar Region für mehrere Module
+        /// </summary>
+        public static string TopStatusRegion = "TopStatusRegion";
     }
 }

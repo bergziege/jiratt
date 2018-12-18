@@ -3,7 +3,7 @@ using Atlassian.Jira;
 using Prism.Commands;
 using Prism.Mvvm;
 
-namespace Jiratt.UI.Modules.TaskDetails.CommitComment.ViewModels {
+namespace Jiratt.UI.Modules.JiraModule.SubModules.CommitComment.ViewModels {
     public class CommitCommentViewModel: BindableBase, ICommitCommentViewModel {
         
         public DelegateCommand CopyCommitCommentToClipboardCommand {

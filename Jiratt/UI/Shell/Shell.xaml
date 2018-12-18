@@ -8,20 +8,30 @@
         mc:Ignorable="d"
         Title="Shell" Height="450" Width="800">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
-        <ContentControl Grid.Column="0"
-                        regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.LeftContentRegion}" />
+        <ItemsControl regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.TopStatusRegion}" />
 
-        <ContentControl Grid.Column="1"
-                        regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.CenterRegion}" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <ContentControl Grid.Column="2"
-                        regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.RightContentRegion}" />
-        
+            <ContentControl Grid.Column="0"
+                            regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.LeftContentRegion}" />
+
+            <ContentControl Grid.Column="1"
+                            regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.CenterRegion}" />
+
+            <ContentControl Grid.Column="2"
+                            regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.RightContentRegion}" />
+
+        </Grid>
     </Grid>
 </Window>

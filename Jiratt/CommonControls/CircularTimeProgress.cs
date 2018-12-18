@@ -4,7 +4,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace Jiratt.UI.Modules.TaskDetails.Controls {
+namespace Jiratt.CommonControls {
     public class CircularTimeProgress : Control {
         public static readonly DependencyProperty AngleProperty = DependencyProperty.Register(
                 "Angle",

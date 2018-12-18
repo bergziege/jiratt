@@ -3,7 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary
-            Source="pack://Application:,,,/Jiratt;component/UI/Modules/TaskDetails/Controls\CircularTimeProgressStyle.xaml" />
+            Source="pack://Application:,,,/CommonControls/CircularTimeProgressStyle.xaml" />
         <ResourceDictionary Source="pack://Application:,,,/Jiratt;component/Themes\Styles.xaml" />
 
         <!--<ResourceDictionary Source="/TrackingtoolLogistik.WPF;component/Themes/Colors.xaml"></ResourceDictionary>
