@@ -11,8 +11,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <ItemsControl regions:RegionManager.RegionName="{x:Static local:JiraShellRegionNames.TopStatusBar}" />
-        <ContentControl regions:RegionManager.RegionName="{x:Static local:JiraShellRegionNames.MainContent}" Grid.Row="1" />
+        <ItemsControl regions:RegionManager.RegionName="{x:Static local:JiraShellRegionNames.TopStatusBar}"/>
+        <ContentControl regions:RegionManager.RegionName="{x:Static local:JiraShellRegionNames.SearchRegion}" Grid.Row="1" />
+        <ContentControl regions:RegionManager.RegionName="{x:Static local:JiraShellRegionNames.TrackingRegion}" Grid.Row="2" />
     </Grid>
 </UserControl>

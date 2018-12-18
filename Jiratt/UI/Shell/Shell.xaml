@@ -9,9 +9,9 @@
         Title="Shell" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <ItemsControl regions:RegionManager.RegionName="{x:Static local:ShellRegionNames.TopStatusRegion}" />
