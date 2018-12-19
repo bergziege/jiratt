@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Atlassian.Jira;
 using Jiratt.Common;
+using Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewCommands;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -12,6 +13,7 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewModels {
     /// </summary>
     public class TaskSearchViewModel : BindableBase, ITaskSearchViewModel, INavigationAware {
         private readonly Jira _jiraClient;
+        private readonly ShowTaskDetailsViewCommand _showTaskDetailsViewCommand;
         private string _issueNumber;
         private IJiraIssueViewModel _selectedIssue;
         private IJiraProjectViewModel _selectedProject;
@@ -20,8 +22,9 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewModels {
         /// <summary>
         /// </summary>
         /// <param name="jiraClient"></param>
-        public TaskSearchViewModel(Jira jiraClient) {
+        public TaskSearchViewModel(Jira jiraClient, ShowTaskDetailsViewCommand showTaskDetailsViewCommand) {
             _jiraClient = jiraClient;
+            _showTaskDetailsViewCommand = showTaskDetailsViewCommand;
         }
 
         /// <summary>
@@ -116,6 +119,7 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewModels {
         }
 
         private void ShowDetails() {
+            _showTaskDetailsViewCommand.Execute(SelectedIssue.Issue);
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Jiratt.Services.Worker {
         private readonly IEventAggregator _eventAggregator;
         private readonly Timer _timer;
 
-        private TimeSpan _period;
+        private readonly TimeSpan _period;
 
         public GlobalTimer(IEventAggregator eventAggregator) {
             _eventAggregator = eventAggregator;
@@ -22,6 +22,8 @@ namespace Jiratt.Services.Worker {
             _timer.Interval = _period.TotalMilliseconds;
             _timer.AutoReset = true;
             _timer.Elapsed += _timer_Elapsed;
+
+            StartTimer();
         }
 
         private void _timer_Elapsed(object sender, ElapsedEventArgs e) {
@@ -29,14 +31,21 @@ namespace Jiratt.Services.Worker {
         }
 
         private void OnStartTimer(StartTimerEvent obj) {
+            StartTimer();
+        }
+
+        private void OnStopTimer(StopTimerEvent obj) {
+            StopTimer();
+        }
+
+        private void StartTimer() {
             _timer.Start();
             _eventAggregator.GetEvent<PubSubEvent<TimerStartedEvent>>().Publish(new TimerStartedEvent());
         }
 
-        private void OnStopTimer(StopTimerEvent obj) {
+        private void StopTimer() {
             _timer.Stop();
             _eventAggregator.GetEvent<PubSubEvent<TimerStoppedEvent>>().Publish(new TimerStoppedEvent());
         }
-        
     }
 }

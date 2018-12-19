@@ -43,6 +43,9 @@
     <Reference Include="CommonServiceLocator, Version=2.0.4.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.8.13\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="Humanizer, Version=2.5.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Humanizer.Core.2.5.16\lib\netstandard2.0\Humanizer.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -117,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Common\Converter\TimeSpanHumanizerConverter.cs" />
     <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="UI\Modules\JiraModule\JiraModule.cs" />
     <Compile Include="UI\Modules\JiraModule\Shell\JiraModuleShell.xaml.cs">
@@ -137,6 +141,15 @@
     <Compile Include="UI\Modules\JiraModule\SubModules\CommitComment\ICommitCommentViewModel.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\CommitComment\ViewModels\CommitCommentViewModel.cs" />
     <Compile Include="CommonControls\CircularTimeProgress.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Task\DesignViewModels\TaskDesignViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Task\ITaskViewModel.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Task\TaskModule.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Task\TaskView.xaml.cs">
+      <DependentUpon>TaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Modules\JiraModule\SubModules\Task\ViewCommands\ShowTaskDetailsParameters.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Task\ViewCommands\ShowTaskDetailsViewCommand.cs" />
+    <Compile Include="UI\Modules\JiraModule\SubModules\Task\ViewModels\TaskViewModel.cs" />
     <Compile Include="UI\Modules\StartStopModule\StartStopModule.cs" />
     <Compile Include="UI\Modules\StartStopModule\DesignViewModels\TimeTrackingDesignViewModel.cs" />
     <Compile Include="UI\Modules\StartStopModule\ITimeTrackingViewModel.cs" />
@@ -214,6 +227,10 @@
     <Page Include="CommonControls\CircularTimeProgressStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="UI\Modules\JiraModule\SubModules\Task\TaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UI\Modules\StartStopModule\TimeTrackingView.xaml">
       <Generator>MSBuild:Compile</Generator>

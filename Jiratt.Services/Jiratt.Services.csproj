@@ -50,6 +50,8 @@
     <Compile Include="Events\StopTimerEvent.cs" />
     <Compile Include="Events\TimerStoppedEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ITimeSpanService.cs" />
+    <Compile Include="Services\Impl\TimeSpanService.cs" />
     <Compile Include="Worker\GlobalTimer.cs" />
   </ItemGroup>
   <ItemGroup>

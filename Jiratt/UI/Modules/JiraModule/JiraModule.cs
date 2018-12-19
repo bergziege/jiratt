@@ -1,5 +1,6 @@
 ﻿using Jiratt.UI.Modules.JiraModule.Shell;
 using Jiratt.UI.Modules.JiraModule.SubModules.Login;
+using Jiratt.UI.Modules.JiraModule.SubModules.Task;
 using Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch;
 using Jiratt.UI.Shell;
 using Prism.Ioc;
@@ -24,6 +25,7 @@ namespace Jiratt.UI.Modules.JiraModule {
         public void RegisterTypes(IContainerRegistry containerRegistry) {
             LoginModule.RegisterTypes(containerRegistry);
             TaskSearchModule.RegisterTypes(containerRegistry);
+            TaskModule.RegisterTypes(containerRegistry);
         }
 
         /// <summary>Notifies the module that it has be initialized.</summary>
@@ -32,6 +34,7 @@ namespace Jiratt.UI.Modules.JiraModule {
 
             LoginModule.OnInitialized(containerProvider, _regionManager);
             TaskSearchModule.OnInitialized(containerProvider, _regionManager);
+            TaskModule.OnInitialized(containerProvider, _regionManager);
         }
     }
 }
