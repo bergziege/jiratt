@@ -1,24 +1,19 @@
 ﻿using System.Threading;
 using System.Windows;
-using Jiratt.Services.Events;
 using Jiratt.Services.Services;
 using Jiratt.Services.Services.Impl;
 using Jiratt.Services.Worker;
 using Jiratt.UI.Modules.JiraModule;
-using Jiratt.UI.Modules.JiraModule.SubModules.Login;
-using Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch;
 using Jiratt.UI.Modules.StartStopModule;
 using Jiratt.UI.Shell;
-using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
-using Prism.Unity;
 
 namespace Jiratt {
     /// <summary>
     ///     Interaktionslogik für "App.xaml"
     /// </summary>
-    public partial class App : PrismApplication {
+    public partial class App {
         /// <summary>
         ///     Configures the <see cref="T:Prism.Modularity.IModuleCatalog" /> used by Prism.
         /// </summary>

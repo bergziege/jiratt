@@ -3,27 +3,38 @@ using Atlassian.Jira;
 using Prism.Commands;
 
 namespace Jiratt.UI.Modules.JiraModule.SubModules.Task.DesignViewModels {
+    /// <summary>
+    ///     Design View Model für die Darstellung eines einzelnen Tasks
+    /// </summary>
     public class TaskDesignViewModel : ITaskViewModel {
-        private Issue _issue;
-        private DelegateCommand _startTimeCommand;
-        private DelegateCommand _stopTimeCommand;
+        /// <summary>
+        ///     Liefert ein Command um die Zeit zu verwerfen
+        /// </summary>
+        public DelegateCommand DiscardTimeCommand { get; } = new DelegateCommand(() => { });
 
-        public DelegateCommand DiscardTimeCommand { get; }
+        /// <summary>
+        ///     Liefert den Task
+        /// </summary>
+        public Issue Issue { get; } = null;
 
-        public Issue Issue {
-            get { return _issue; }
-        }
+        /// <summary>
+        ///     Speichert die Zeit und setzt sie zurück
+        /// </summary>
+        public DelegateCommand SaveTimeCommand { get; } = new DelegateCommand(() => { });
 
-        public DelegateCommand SaveTimeCommand { get; }
+        /// <summary>
+        ///     Startet die Zeit
+        /// </summary>
+        public DelegateCommand StartTimeCommand { get; } = new DelegateCommand(() => { });
 
-        public DelegateCommand StartTimeCommand {
-            get { return _startTimeCommand; }
-        }
+        /// <summary>
+        ///     Stoppt die Zeit
+        /// </summary>
+        public DelegateCommand StopTimeCommand { get; } = new DelegateCommand(() => { });
 
-        public DelegateCommand StopTimeCommand {
-            get { return _stopTimeCommand; }
-        }
-
+        /// <summary>
+        ///     Liefert die noch nicht gespeicherte Zeit
+        /// </summary>
         public TimeSpan TimeNotLogged { get; } = new TimeSpan(0, 2, 3, 5);
     }
 }

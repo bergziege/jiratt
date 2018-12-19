@@ -1,7 +1,6 @@
 ﻿<unity:PrismApplication x:Class="Jiratt.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Jiratt"
              xmlns:unity="http://prismlibrary.com/">
     <Application.Resources>
         <ResourceDictionary>

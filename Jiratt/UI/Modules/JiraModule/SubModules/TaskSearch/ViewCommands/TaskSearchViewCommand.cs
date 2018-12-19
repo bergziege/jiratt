@@ -1,5 +1,4 @@
 ﻿using Jiratt.UI.Modules.JiraModule.Shell;
-using Jiratt.UI.Shell;
 using Prism.Regions;
 
 namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewCommands {

@@ -5,93 +5,110 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace Jiratt.CommonControls {
+    /// <summary>
+    ///     Control für einen runden Progressbar
+    /// </summary>
     public class CircularTimeProgress : Control {
+        /// <summary>
+        ///     Dependency Property für Anfangswinkel
+        /// </summary>
         public static readonly DependencyProperty AngleProperty = DependencyProperty.Register(
-                "Angle",
-                typeof(double),
-                typeof(CircularTimeProgress),
-                new PropertyMetadata(default(double), AngleChanged));
-        public static readonly DependencyProperty PercentageProperty = DependencyProperty.Register(
-                "Percentage",
-                typeof(double),
-                typeof(CircularTimeProgress),
-                new PropertyMetadata(default(double), PercentageChanged));
+            "Angle",
+            typeof(double),
+            typeof(CircularTimeProgress),
+            new PropertyMetadata(default(double), AngleChanged));
 
+        /// <summary>
+        ///     Dependency Property für Prozent
+        /// </summary>
+        public static readonly DependencyProperty PercentageProperty = DependencyProperty.Register(
+            "Percentage",
+            typeof(double),
+            typeof(CircularTimeProgress),
+            new PropertyMetadata(default(double), PercentageChanged));
+
+        /// <summary>
+        ///     Dependency Property für Radius
+        /// </summary>
         public static readonly DependencyProperty RadiusProperty = DependencyProperty.Register(
-                "Radius",
-                typeof(double),
-                typeof(CircularTimeProgress),
-                new PropertyMetadata(default(double), RadiusChanged));
+            "Radius",
+            typeof(double),
+            typeof(CircularTimeProgress),
+            new PropertyMetadata(default(double), RadiusChanged));
+
+        /// <summary>
+        ///     Dependency Property für Farbe
+        /// </summary>
         public static readonly DependencyProperty StrokeProperty = DependencyProperty.Register(
-                "Stroke",
-                typeof(Brush),
-                typeof(CircularTimeProgress),
-                new PropertyMetadata(default(Brush)));
+            "Stroke",
+            typeof(Brush),
+            typeof(CircularTimeProgress),
+            new PropertyMetadata(default(Brush)));
+
+        /// <summary>
+        ///     Dependency Property für Dicke
+        /// </summary>
         public static readonly DependencyProperty StrokeThicknessProperty = DependencyProperty.Register(
-                "StrokeThickness",
-                typeof(double),
-                typeof(CircularTimeProgress),
-                new PropertyMetadata(default(double)));
+            "StrokeThickness",
+            typeof(double),
+            typeof(CircularTimeProgress),
+            new PropertyMetadata(default(double)));
 
         private ArcSegment _partArcSegment;
         private PathFigure _partPathFigure;
         private Path _partPathRoot;
 
+        static CircularTimeProgress() {
+            DefaultStyleKeyProperty.OverrideMetadata(
+                typeof(CircularTimeProgress),
+                new FrameworkPropertyMetadata(typeof(CircularTimeProgress)));
+        }
+
         /// <summary>
-        /// Initialisiert eine neue Instanz der <see cref="T:System.Windows.Controls.Control"/>-Klasse.
+        ///     Initialisiert eine neue Instanz der <see cref="T:System.Windows.Controls.Control" />-Klasse.
         /// </summary>
         public CircularTimeProgress() {
             DefaultStyleKey = GetType();
         }
 
-        static CircularTimeProgress() {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(CircularTimeProgress),
-                    new FrameworkPropertyMetadata(typeof(CircularTimeProgress)));
-        }
-
+        /// <summary>
+        ///     Anfangswinkel
+        /// </summary>
         public double Angle {
             get { return (double)GetValue(AngleProperty); }
             set { SetValue(AngleProperty, value); }
         }
+
+        /// <summary>
+        ///     Prozent/Frotschritt
+        /// </summary>
         public double Percentage {
             get { return (double)GetValue(PercentageProperty); }
             set { SetValue(PercentageProperty, value); }
         }
+
+        /// <summary>
+        ///     Radius
+        /// </summary>
         public double Radius {
             get { return (double)GetValue(RadiusProperty); }
             set { SetValue(RadiusProperty, value); }
         }
+
+        /// <summary>
+        ///     Farbe
+        /// </summary>
         public Brush Stroke {
             get { return (Brush)GetValue(StrokeProperty); }
             set { SetValue(StrokeProperty, value); }
         }
+
+        /// <summary>
+        ///     Dicke
+        /// </summary>
         public double StrokeThickness {
             get { return (double)GetValue(StrokeThicknessProperty); }
             set { SetValue(StrokeThicknessProperty, value); }
-        }
-
-        /// <summary>
-        /// Wird aufgerufen, um den Inhalt eines <see cref="T:System.Windows.Controls.Control"/>-Objekts anzuordnen und zu skalieren.
-        /// </summary>
-        /// <returns>
-        /// Die Größe des Steuerelements.
-        /// </returns>
-        /// <param name="arrangeBounds">Die berechnete Größe, mit der der Inhalt angeordnet wird.</param>
-        protected override Size ArrangeOverride(Size arrangeBounds) {
-            double min = Math.Min(arrangeBounds.Width, arrangeBounds.Height);
-            Radius = (min / 2) - StrokeThickness;
-            return base.ArrangeOverride(arrangeBounds);
-        }
-
-        /// <summary>
-        /// Wird aufgerufen, um ein Steuerelement erneut zu messen.
-        /// </summary>
-        /// <returns>
-        /// Die Größe des Steuerelements, bis zu dem durch <paramref name="constraint"/> angegebenen Maximum.
-        /// </returns>
-        /// <param name="constraint">Die maximale Größe, die die Methode zurückgeben kann.</param>
-        protected override Size MeasureOverride(Size constraint) {
-            return base.MeasureOverride(constraint);
         }
 
         /// <summary>
@@ -109,10 +126,14 @@ namespace Jiratt.CommonControls {
             RenderArc();
         }
 
+        /// <summary>
+        ///     Zeichne den Kreisbogen
+        /// </summary>
         public void RenderArc() {
             if (_partArcSegment == null || _partPathFigure == null || _partPathRoot == null) {
                 return;
             }
+
             Point startPoint = new Point(Radius, 0);
             Point endPoint = ComputeCartesianCoordinate(Angle, Radius);
             endPoint.X += Radius;
@@ -135,6 +156,31 @@ namespace Jiratt.CommonControls {
             _partArcSegment.Point = endPoint;
             _partArcSegment.Size = outerArcSize;
             _partArcSegment.IsLargeArc = largeArc;
+        }
+
+        /// <summary>
+        ///     Wird aufgerufen, um den Inhalt eines <see cref="T:System.Windows.Controls.Control" />-Objekts anzuordnen und zu
+        ///     skalieren.
+        /// </summary>
+        /// <returns>
+        ///     Die Größe des Steuerelements.
+        /// </returns>
+        /// <param name="arrangeBounds">Die berechnete Größe, mit der der Inhalt angeordnet wird.</param>
+        protected override Size ArrangeOverride(Size arrangeBounds) {
+            double min = Math.Min(arrangeBounds.Width, arrangeBounds.Height);
+            Radius = (min / 2) - StrokeThickness;
+            return base.ArrangeOverride(arrangeBounds);
+        }
+
+        /// <summary>
+        ///     Wird aufgerufen, um ein Steuerelement erneut zu messen.
+        /// </summary>
+        /// <returns>
+        ///     Die Größe des Steuerelements, bis zu dem durch <paramref name="constraint" /> angegebenen Maximum.
+        /// </returns>
+        /// <param name="constraint">Die maximale Größe, die die Methode zurückgeben kann.</param>
+        protected override Size MeasureOverride(Size constraint) {
+            return base.MeasureOverride(constraint);
         }
 
         private static void AngleChanged(DependencyObject d, DependencyPropertyChangedEventArgs e) {

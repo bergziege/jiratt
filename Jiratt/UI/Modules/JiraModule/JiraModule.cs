@@ -8,24 +8,17 @@ using Prism.Modularity;
 using Prism.Regions;
 
 namespace Jiratt.UI.Modules.JiraModule {
+    /// <summary>
+    ///     Jira Modul
+    /// </summary>
     public class JiraModule : IModule {
         private readonly IRegionManager _regionManager;
 
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="regionManager"></param>
         public JiraModule(IRegionManager regionManager) {
             _regionManager = regionManager;
-        }
-
-        /// <summary>
-        /// Used to register types with the container that will be used by your application.
-        /// </summary>
-        public void RegisterTypes(IContainerRegistry containerRegistry) {
-            LoginModule.RegisterTypes(containerRegistry);
-            TaskSearchModule.RegisterTypes(containerRegistry);
-            TaskModule.RegisterTypes(containerRegistry);
         }
 
         /// <summary>Notifies the module that it has be initialized.</summary>
@@ -35,6 +28,15 @@ namespace Jiratt.UI.Modules.JiraModule {
             LoginModule.OnInitialized(containerProvider, _regionManager);
             TaskSearchModule.OnInitialized(containerProvider, _regionManager);
             TaskModule.OnInitialized(containerProvider, _regionManager);
+        }
+
+        /// <summary>
+        ///     Used to register types with the container that will be used by your application.
+        /// </summary>
+        public void RegisterTypes(IContainerRegistry containerRegistry) {
+            LoginModule.RegisterTypes(containerRegistry);
+            TaskSearchModule.RegisterTypes(containerRegistry);
+            TaskModule.RegisterTypes(containerRegistry);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.Login.DesignViewModel {
         ///     Erzeugen des Jira CLients erfolgt im Code behind um nicht das "klartext" Passwort unnötig duch die Gegend zu
         ///     schieben.
         /// </summary>
-        public RelayCommand FakeLoginCommand { get; }
+        public RelayCommand FakeLoginCommand { get; } = new RelayCommand(()=>{});
 
         /// <summary>
         ///     Setzt ob in der UI ein Passwort eingegeben wurde
