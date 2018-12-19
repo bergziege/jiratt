@@ -12,7 +12,7 @@ using Prism.Regions;
 namespace Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewModels {
     public class TaskViewModel : BindableBase, ITaskViewModel, INavigationAware {
         private readonly IEventAggregator _eventAggregator;
-        private readonly ITimeSpanService _timeSpanService;
+        private readonly IWorklogService _worklogService;
         private DelegateCommand _discardTimeCommand;
         private Issue _issue;
         private DelegateCommand _saveTimeCommand;
@@ -21,9 +21,9 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewModels {
         private TimeSpan _timeNotLogged;
         protected internal SubscriptionToken _timerTickSubscription;
 
-        public TaskViewModel(IEventAggregator eventAggregator, ITimeSpanService timeSpanService) {
+        public TaskViewModel(IEventAggregator eventAggregator, IWorklogService worklogService) {
             _eventAggregator = eventAggregator;
-            _timeSpanService = timeSpanService;
+            _worklogService = worklogService;
         }
 
         /// <summary>
@@ -108,8 +108,7 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewModels {
         }
 
         private void SaveTime() {
-            Issue.AddWorklogAsync(_timeSpanService.GetJiraFormattedTimeSpanValue(TimeNotLogged));
-            Issue.SaveChanges();
+            _worklogService.AddTimeToWorklog(Issue, TimeNotLogged);
             DiscardTime();
         }
 
