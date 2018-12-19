@@ -39,6 +39,13 @@
         </ComboBox>
         <TextBox Grid.Row="1" MinWidth="50" Text="{Binding Path=IssueNumber, UpdateSourceTrigger=PropertyChanged}" Margin="2"/>
         <ListBox Grid.Row="2" ItemsSource="{Binding  Path=AvailableIssues}" Grid.Column="0" Grid.IsSharedSizeScope="True" SelectedItem="{Binding Path=SelectedIssue}">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="'in arbeit' - Kommitkommentar" Command="{Binding Path=CreateCommitCommentCommand}" CommandParameter="in arbeit" />
+                    <MenuItem Header="'fertig' - Kommitkommentar" Command="{Binding Path=CreateCommitCommentCommand}" CommandParameter="fertig"/>
+                    <MenuItem Header="'fixes' - Kommitkommentar" Command="{Binding Path=CreateCommitCommentCommand}" CommandParameter="fixes" />
+                </ContextMenu>
+            </ListBox.ContextMenu>
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="taskSearch:IJiraIssueViewModel">
                     <Grid>

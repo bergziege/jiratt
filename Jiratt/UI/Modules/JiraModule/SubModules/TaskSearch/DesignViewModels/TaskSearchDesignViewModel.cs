@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using Jiratt.Common;
+using Prism.Commands;
 using Prism.Mvvm;
 
 namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.DesignViewModels {
@@ -13,7 +14,11 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.DesignViewModels {
         public TaskSearchDesignViewModel() {
             AvailableIssues.Add(new JiraIssueDesignViewModel("Bug", "PROJECT42-4", "Das ist ein falscher fehler"));
             AvailableIssues.Add(new JiraIssueDesignViewModel("Feature", "PROJECT-42", "Das ist ein neuer falscher Fehler"));
-            AvailableIssues.Add(new JiraIssueDesignViewModel("Aufgabe", "PROJECT-424", "Und hier soll noch jemand ein viel längeren falschen Fehler einbauen, damit wir auch in Zukunft was z utun haben ;-)"));
+            AvailableIssues.Add(
+                new JiraIssueDesignViewModel(
+                    "Aufgabe",
+                    "PROJECT-424",
+                    "Und hier soll noch jemand ein viel längeren falschen Fehler einbauen, damit wir auch in Zukunft was z utun haben ;-)"));
             SelectedIssue = AvailableIssues[1];
 
             AvailableProjects.Add(new JiraProjectDesignViewModel());
@@ -30,6 +35,8 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.DesignViewModels {
         ///     Liefert die Liste der zur Auswahl stehenden Projekte
         /// </summary>
         public ObservableCollection<IJiraProjectViewModel> AvailableProjects { get; } = new ObservableCollection<IJiraProjectViewModel>();
+
+        public DelegateCommand<string> CreateCommitCommentCommand { get; }
 
         /// <summary>
         ///     Setzt die Vorgangsnummer

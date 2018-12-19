@@ -135,11 +135,6 @@
     <Compile Include="UI\Modules\JiraModule\SubModules\Login\LoginModule.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\Login\ViewCommands\LoginViewCommand.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\Login\ViewModels\LoginViewModel.cs" />
-    <Compile Include="UI\Modules\JiraModule\SubModules\CommitComment\CommitCommentView.xaml.cs">
-      <DependentUpon>CommitCommentView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Modules\JiraModule\SubModules\CommitComment\ICommitCommentViewModel.cs" />
-    <Compile Include="UI\Modules\JiraModule\SubModules\CommitComment\ViewModels\CommitCommentViewModel.cs" />
     <Compile Include="CommonControls\CircularTimeProgress.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\Task\DesignViewModels\TaskDesignViewModel.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\Task\ITaskViewModel.cs" />
@@ -219,10 +214,6 @@
     <Page Include="UI\Modules\JiraModule\SubModules\Login\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Modules\JiraModule\SubModules\CommitComment\CommitCommentView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="CommonControls\CircularTimeProgressStyle.xaml">
       <Generator>MSBuild:Compile</Generator>

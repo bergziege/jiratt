@@ -1,6 +1,4 @@
-﻿using Jiratt.UI.Modules.JiraModule.SubModules.CommitComment;
-using Jiratt.UI.Modules.JiraModule.SubModules.CommitComment.ViewModels;
-using Jiratt.UI.Modules.StartStopModule.ViewModels;
+﻿using Jiratt.UI.Modules.StartStopModule.ViewModels;
 using Jiratt.UI.Shell;
 using Prism.Ioc;
 using Prism.Modularity;
@@ -30,7 +28,6 @@ namespace Jiratt.UI.Modules.StartStopModule {
         /// </summary>
         public void RegisterTypes(IContainerRegistry containerRegistry) {
             containerRegistry.Register<IStartStopViewModel, StartStopViewModel>();
-            containerRegistry.Register<ICommitCommentViewModel, CommitCommentViewModel>();
 
             ViewModelLocationProvider.Register<StartStopView, IStartStopViewModel>();
         }

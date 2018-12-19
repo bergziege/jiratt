@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Jiratt.Common;
+using Prism.Commands;
 
 namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch {
     /// <summary>
@@ -15,6 +16,8 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch {
         ///     Liefert die Liste der zur Auswahl stehenden Projekte
         /// </summary>
         ObservableCollection<IJiraProjectViewModel> AvailableProjects { get; }
+
+        DelegateCommand<string> CreateCommitCommentCommand { get; }
 
         /// <summary>
         ///     Setzt die Vorgangsnummer

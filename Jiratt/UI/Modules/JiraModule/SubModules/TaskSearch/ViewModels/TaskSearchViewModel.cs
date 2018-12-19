@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using Atlassian.Jira;
 using Jiratt.Common;
 using Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewCommands;
+using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 
@@ -14,6 +16,8 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewModels {
     public class TaskSearchViewModel : BindableBase, ITaskSearchViewModel, INavigationAware {
         private readonly Jira _jiraClient;
         private readonly ShowTaskDetailsViewCommand _showTaskDetailsViewCommand;
+
+        private DelegateCommand<string> _createCommitCommentCommand;
         private string _issueNumber;
         private IJiraIssueViewModel _selectedIssue;
         private IJiraProjectViewModel _selectedProject;
@@ -36,6 +40,17 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewModels {
         ///     Liefert die Liste der zur Auswahl stehenden Projekte
         /// </summary>
         public ObservableCollection<IJiraProjectViewModel> AvailableProjects { get; } = new ObservableCollection<IJiraProjectViewModel>();
+
+        /// <summary>
+        /// </summary>
+        public DelegateCommand<string> CreateCommitCommentCommand {
+            get {
+                if (_createCommitCommentCommand == null)
+                    _createCommitCommentCommand = new DelegateCommand<string>(CreateCommitComment);
+
+                return _createCommitCommentCommand;
+            }
+        }
 
         /// <summary>
         ///     Setzt die Vorgangsnummer
@@ -97,6 +112,10 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.TaskSearch.ViewModels {
 
         private bool CanShowDetails() {
             return SelectedIssue != null;
+        }
+
+        private void CreateCommitComment(string commitCommentPrefix) {
+            Clipboard.SetText($"{commitCommentPrefix} - [{SelectedIssue.Key}] - {SelectedIssue.Summary}");
         }
 
         private async void RefreshIssues() {

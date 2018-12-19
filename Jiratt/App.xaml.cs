@@ -42,6 +42,7 @@ namespace Jiratt {
             containerRegistry.Register<Shell>();
             containerRegistry.RegisterInstance(containerRegistry);
             containerRegistry.Register<ITimeSpanService, TimeSpanService>();
+            containerRegistry.Register<IWorklogService, WorklogService>();
 
             Thread workerThread = new Thread(
                 () => {
