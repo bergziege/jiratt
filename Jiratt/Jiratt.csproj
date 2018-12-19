@@ -151,12 +151,12 @@
     <Compile Include="UI\Modules\JiraModule\SubModules\Task\ViewCommands\ShowTaskDetailsViewCommand.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\Task\ViewModels\TaskViewModel.cs" />
     <Compile Include="UI\Modules\StartStopModule\StartStopModule.cs" />
-    <Compile Include="UI\Modules\StartStopModule\DesignViewModels\TimeTrackingDesignViewModel.cs" />
-    <Compile Include="UI\Modules\StartStopModule\ITimeTrackingViewModel.cs" />
-    <Compile Include="UI\Modules\StartStopModule\TimeTrackingView.xaml.cs">
-      <DependentUpon>TimeTrackingView.xaml</DependentUpon>
+    <Compile Include="UI\Modules\StartStopModule\DesignViewModels\StartStopDesignViewModel.cs" />
+    <Compile Include="UI\Modules\StartStopModule\IStartStopViewModel.cs" />
+    <Compile Include="UI\Modules\StartStopModule\StartStopView.xaml.cs">
+      <DependentUpon>StartStopView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UI\Modules\StartStopModule\ViewModels\TimeTrackingViewModel.cs" />
+    <Compile Include="UI\Modules\StartStopModule\ViewModels\StartStopViewModel.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\DesignViewModels\JiraIssueDesignViewModel.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\DesignViewModels\JiraProjectDesignViewModel.cs" />
     <Compile Include="UI\Modules\JiraModule\SubModules\TaskSearch\DesignViewModels\TaskSearchDesignViewModel.cs" />
@@ -232,7 +232,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UI\Modules\StartStopModule\TimeTrackingView.xaml">
+    <Page Include="UI\Modules\StartStopModule\StartStopView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

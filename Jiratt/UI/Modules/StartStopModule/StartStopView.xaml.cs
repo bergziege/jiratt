@@ -4,8 +4,8 @@ namespace Jiratt.UI.Modules.StartStopModule {
     /// <summary>
     /// Interaktionslogik für TimeTrackingView.xaml
     /// </summary>
-    public partial class TimeTrackingView : UserControl {
-        public TimeTrackingView() {
+    public partial class StartStopView : UserControl {
+        public StartStopView() {
             InitializeComponent();
         }
     }

@@ -2,8 +2,8 @@
 using Prism.Mvvm;
 
 namespace Jiratt.UI.Modules.StartStopModule.DesignViewModels {
-    public class TimeTrackingDesignViewModel : BindableBase, ITimeTrackingViewModel {
-        public TimeTrackingDesignViewModel() {
+    public class StartStopDesignViewModel : BindableBase, IStartStopViewModel {
+        public StartStopDesignViewModel() {
             
         }
 

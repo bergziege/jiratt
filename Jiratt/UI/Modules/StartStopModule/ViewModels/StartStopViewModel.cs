@@ -6,12 +6,12 @@ using Prism.Events;
 using Prism.Mvvm;
 
 namespace Jiratt.UI.Modules.StartStopModule.ViewModels {
-    public class TimeTrackingViewModel : BindableBase, ITimeTrackingViewModel {
+    public class StartStopViewModel : BindableBase, IStartStopViewModel {
         private readonly IEventAggregator _eventAggregator;
         private bool _isTimerRunning;
         private DelegateCommand _startStopCommand;
 
-        public TimeTrackingViewModel(IEventAggregator eventAggregator) {
+        public StartStopViewModel(IEventAggregator eventAggregator) {
             _eventAggregator = eventAggregator;
 
             _eventAggregator.GetEvent<PubSubEvent<TimerStartedEvent>>().Subscribe(OnTimerStarted);

@@ -23,16 +23,16 @@ namespace Jiratt.UI.Modules.StartStopModule {
 
         /// <summary>Notifies the module that it has be initialized.</summary>
         public void OnInitialized(IContainerProvider containerProvider) {
-            _regionManager.RegisterViewWithRegion(ShellRegionNames.TopStatusRegion, typeof(TimeTrackingView));
+            _regionManager.RegisterViewWithRegion(ShellRegionNames.TopStatusRegion, typeof(StartStopView));
         }
 
         /// <summary>
         /// </summary>
         public void RegisterTypes(IContainerRegistry containerRegistry) {
-            containerRegistry.Register<ITimeTrackingViewModel, TimeTrackingViewModel>();
+            containerRegistry.Register<IStartStopViewModel, StartStopViewModel>();
             containerRegistry.Register<ICommitCommentViewModel, CommitCommentViewModel>();
 
-            ViewModelLocationProvider.Register<TimeTrackingView, ITimeTrackingViewModel>();
+            ViewModelLocationProvider.Register<StartStopView, IStartStopViewModel>();
         }
     }
 }
