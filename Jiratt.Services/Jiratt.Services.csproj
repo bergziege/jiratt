@@ -54,17 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\TimerTickEvent.cs" />
-    <Compile Include="Events\StartTimerEvent.cs" />
-    <Compile Include="Events\TimerStartedEvent.cs" />
-    <Compile Include="Events\StopTimerEvent.cs" />
-    <Compile Include="Events\TimerStoppedEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Impl\WorklogService.cs" />
     <Compile Include="Services\ITimeSpanService.cs" />
     <Compile Include="Services\Impl\TimeSpanService.cs" />
     <Compile Include="Services\IWorklogService.cs" />
-    <Compile Include="Worker\GlobalTimer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Windows;
+using System.Windows.Threading;
 using Atlassian.Jira;
-using Jiratt.Services.Events;
 using Jiratt.Services.Services;
 using Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewCommands;
 using Prism.Commands;
@@ -14,6 +13,7 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewModels {
         private readonly IEventAggregator _eventAggregator;
         private readonly IWorklogService _worklogService;
         private DelegateCommand _discardTimeCommand;
+        private readonly DispatcherTimer _dispatcherTimer;
         private Issue _issue;
         private DelegateCommand _saveTimeCommand;
         private DelegateCommand _startTimeCommand;
@@ -24,6 +24,9 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewModels {
         public TaskViewModel(IEventAggregator eventAggregator, IWorklogService worklogService) {
             _eventAggregator = eventAggregator;
             _worklogService = worklogService;
+            _dispatcherTimer = new DispatcherTimer();
+            _dispatcherTimer.Interval = TimeSpan.FromSeconds(1);
+            _dispatcherTimer.Tick += _dispatcherTimer_Tick;
         }
 
         /// <summary>
@@ -94,6 +97,10 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewModels {
             }
         }
 
+        private void _dispatcherTimer_Tick(object sender, EventArgs e) {
+            TimeNotLogged = TimeNotLogged.Add(TimeSpan.FromSeconds(1));
+        }
+
         private void DiscardTime() {
             TimeNotLogged = new TimeSpan();
         }
@@ -103,27 +110,17 @@ namespace Jiratt.UI.Modules.JiraModule.SubModules.Task.ViewModels {
             TimeNotLogged = new TimeSpan();
         }
 
-        private void OnTimerTick(TimerTickEvent obj) {
-            Application.Current.Dispatcher.Invoke(() => TimeNotLogged = TimeNotLogged.Add(obj.TimeElapsedSinceLastTick));
-        }
-
         private void SaveTime() {
             _worklogService.AddTimeToWorklog(Issue, TimeNotLogged);
             DiscardTime();
         }
 
         private void StartTime() {
-            if (_timerTickSubscription == null) {
-                _timerTickSubscription = _eventAggregator.GetEvent<PubSubEvent<TimerTickEvent>>().Subscribe(OnTimerTick);
-            }
+            _dispatcherTimer.Start();
         }
 
         private void StopTime() {
-            if (_timerTickSubscription != null) {
-                _eventAggregator.GetEvent<PubSubEvent<TimerTickEvent>>().Unsubscribe(_timerTickSubscription);
-                _timerTickSubscription.Dispose();
-                _timerTickSubscription = null;
-            }
+            _dispatcherTimer.Stop();
         }
     }
 }
